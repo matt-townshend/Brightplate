@@ -12,7 +12,7 @@ import kotlin.collections.ArrayList
 @RequiresApi(Build.VERSION_CODES.N)
 class MainActivity : AppCompatActivity() {
 
-    var chicken_noodles: Ingredient = Ingredient("Chicken Noodles",250,MeasureUnit.GRAM)
+    private var chicken_noodles: Ingredient = Ingredient("Chicken Noodles",250,MeasureUnit.GRAM)
     var water: Ingredient = Ingredient("Water",500,MeasureUnit.MILLILITER)
     var review1: Review = Review("28/01/2022","Yeah it's good I guess...")
     var review2: Review = Review("03/11/2021","Taste like chicken")
@@ -36,6 +36,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        chickenNoodles.ingredientList
+
     }
 }
