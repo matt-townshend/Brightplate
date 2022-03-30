@@ -3,14 +3,14 @@ package com.example.brightplate
 import android.media.Image
 
 
-class Recipe constructor(ingredientList: List<Ingredient>,
-                         review: Review,
-                         instructions: String,
-                         cookTime: Int,
-                         prepTime: Int,
-                         equipment: Array<String>,
-                         filter: String,
-                         image: Image){
+class Recipe (val ingredientList: List<Ingredient>,
+                         val review: Review,
+                         val instructions: String,
+                         val cookTime: Int,
+                         val prepTime: Int,
+                         val equipment: Array<String>,
+                         val filter: String,
+                         var image: Image){
 
 
 }
