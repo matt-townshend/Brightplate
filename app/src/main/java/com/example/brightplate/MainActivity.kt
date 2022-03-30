@@ -6,29 +6,28 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.annotation.RequiresApi
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 @RequiresApi(Build.VERSION_CODES.N)
 class MainActivity : AppCompatActivity() {
 
-    var chicken_noodles: Ingredient = TODO()
-    var water: Ingredient = TODO()
-    var chickenNoodles: Recipe = TODO()
+    var chicken_noodles: Ingredient = Ingredient("Chicken Noodles",250,MeasureUnit.GRAM)
+    var water: Ingredient = Ingredient("Water",500,MeasureUnit.MILLILITER)
+    var review1: Review = Review("28/01/2022","Yeah it's good I guess...")
+    var review2: Review = Review("03/11/2021","Taste like chicken")
 
-    init {
-        chicken_noodles.name = "Chicken Noodles"
-        chicken_noodles.quantity = 250
-        chicken_noodles.unit = MeasureUnit.GRAM
-        water.name = "Water"
-        water.quantity = 500
-        water.unit = MeasureUnit.MILLILITER
 
-        chickenNoodles.ingredientList.addAll(Arrays.asList(chicken_noodles, water))
-        chickenNoodles.review = Review("jdjd","hdhd")
-        chickenNoodles.equipment[0] = "microwave".lowercase()
-        chickenNoodles.equipment[1] = "measuring jug".lowercase()
+    var chickenNoodles: Recipe = Recipe(
+        listOf(chicken_noodles, water) as ArrayList<Ingredient>,
+        listOf(review1, review2) as ArrayList<Review>,
+        "Just cook the thing g",
+        6,
+        3,
+        listOf("microwave","measuring jug") as ArrayList<String>,
+        "easy quick noodle",)
 
-    }
+
 
 
 
