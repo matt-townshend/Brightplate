@@ -3,7 +3,7 @@ package com.example.brightplate
 import android.media.Image
 
 
-class Recipe (val ingredientList: List<Ingredient>,
+class Recipe (val ingredientList: ArrayList<Ingredient>,
               val review: Review,
               val instructions: String,
               val cookTime: Int,
