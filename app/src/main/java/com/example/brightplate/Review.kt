@@ -2,7 +2,7 @@ package com.example.brightplate
 
 import java.util.*
 
-class Review constructor(date: Date,
+class Review (date: Date,
                          review: String,){
 
 }
