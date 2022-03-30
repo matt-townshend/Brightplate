@@ -1,4 +1,6 @@
-package com.example.brightplate.sourcefiles
+package com.example.brightplate
+
+import android.media.Image
 
 
 class Recipe constructor(ingredientList: List<Ingredient>,
@@ -7,4 +9,8 @@ class Recipe constructor(ingredientList: List<Ingredient>,
                          cookTime: Int,
                          prepTime: Int,
                          equipment: Array<String>,
-                         filter: String,)
+                         filter: String,
+                         image: Image){
+
+
+}
