@@ -10,7 +10,7 @@ class MainActivity : AppCompatActivity() {
     var chickenNoodles: Recipe = TODO()
 
     init {
-        chicken_noodles.q
+        chicken_noodles.
 
         chickenNoodles.ingredientList = {chicken_noodles, flavour, water}
         chickenNoodles.equipment[0] = "microwave".lowercase()
