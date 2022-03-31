@@ -1,7 +1,8 @@
-package com.example.brightplate
+package com.example.brightplate.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.brightplate.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
