@@ -1,4 +1,4 @@
-package com.example.brightplate
+package com.example.brightplate.models
 
 import java.util.*
 

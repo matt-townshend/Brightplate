@@ -1,6 +1,4 @@
-package com.example.brightplate
-
-import android.media.Image
+package com.example.brightplate.models
 
 
 class Recipe (val ingredientList: ArrayList<Ingredient>,
