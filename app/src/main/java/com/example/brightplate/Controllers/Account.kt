@@ -12,28 +12,20 @@ class Account
     val user = User()
     val scan: Scanner = Scanner(System.`in`)
 
-    fun createAccount(): Boolean
+    constructor() // Empty constructor
+
+    constructor(accID: Int, accEmail: String, accPass: String, userID: String)
     {
-        var flag: Boolean = false
-
-        try
-        {
-            val account = Account()
-
-            user.createUser()
-            account.accEmail = scan.nextLine()
-            account.accPass = scan.nextLine()
-            account.accID += 1
-            account.userID = user.userID
-
-            flag = true
-        }
-        catch (e: Exception)
-        {
-            println("Error creating account")
-        }
-
-        return flag
+        this.accID = accID
+        this.accEmail = accEmail
+        this.accPass = accPass
+        this.userID = userID
     }
+
+    fun createAccount()
+    {
+
+    }
+
 
 }

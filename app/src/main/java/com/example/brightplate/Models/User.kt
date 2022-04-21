@@ -12,29 +12,21 @@ class User
     var height: Float = 0.0F
     val scan: Scanner = Scanner(System.`in`)
 
-    fun createUser(): Boolean
+    constructor() //Empty constructor
+
+    constructor(name: String, surname: String, userID: String, gender: String, weight: Int, height: Float)
     {
-        var flag: Boolean = false
-
-        try {
-            val user = User()
-            user.userID += 1
-            user.name = scan.nextLine()
-            user.surname = scan.nextLine()
-            user.gender = scan.nextLine()
-            user.weight = scan.nextInt()
-            user.height = scan.nextFloat()
-            flag = true
-        }
-        catch (e: Exception)
-        {
-            println("Error creating user")
-        }
-
-        return flag
+        this.name = name
+        this.surname = surname
+        this.userID = userID
+        this.gender = gender
+        this.weight = weight
+        this.height = height
     }
 
+    fun createUser()
+    {
 
-
+    }
 
 }
