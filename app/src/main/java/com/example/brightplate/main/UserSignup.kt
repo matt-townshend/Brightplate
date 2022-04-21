@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.brightplate.databinding.ActivityUserSignupBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
@@ -13,6 +15,7 @@ class UserSignup : AppCompatActivity() {
 
     private lateinit var binding:ActivityUserSignupBinding
     private lateinit var auth: FirebaseAuth
+    private lateinit var ref: FirebaseDatabase
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +37,11 @@ class UserSignup : AppCompatActivity() {
             return passwordREGEX.matcher(pass).matches()
         }
 
+        fun checkUsername(username: String) : Boolean{
+            val usernameREGEX = Pattern.compile("^"+"[a-zA-Z0-9]{5,15}"+"$")
+            return usernameREGEX.matcher(username).matches()
+        }
+
         binding.alreadyUserTextView.setOnClickListener(){
             val goToSignin = Intent(this, UserSignin::class.java)
             startActivity(goToSignin)
@@ -41,30 +49,50 @@ class UserSignup : AppCompatActivity() {
 
         binding.createAccountButton.setOnClickListener{
             val email = binding.editTextEmailAddress.text.toString()
+            val username = binding.editTextUsername.text.toString()
             val password = binding.editTextPassword.text.toString()
             val confirmPassword = binding.editTextConfirmPassword.text.toString()
 
-            if (email.isNotEmpty() && password.isNotEmpty() && confirmPassword.isNotEmpty()) {
-                if(password == confirmPassword) {
-                    if(checkPass(password)) {
-                        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
-                            if (it.isSuccessful) {
-                                auth.signInWithEmailAndPassword(email, password)
-                                val goToHomePage = Intent(this, HomePage::class.java)
-                                startActivity(goToHomePage)
-                            } else {
-                                Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT)
-                                    .show()
-                            }
+            if (email.isNotEmpty() && username.isNotEmpty() && password.isNotEmpty() && confirmPassword.isNotEmpty()) {
+                if(checkUsername(username)) {
+                    if (password == confirmPassword) {
+                        if (checkPass(password)) {
+                            auth.createUserWithEmailAndPassword(email, password)
+                                .addOnCompleteListener {
+                                    if (it.isSuccessful) {
+                                        auth.signInWithEmailAndPassword(email, password)
+
+                                        var database = FirebaseDatabase.getInstance().getReference("users/"+auth.uid.toString())
+                                        database.child("username").setValue(username)
+
+                                        val goToHomePage = Intent(this, HomePage::class.java)
+                                        startActivity(goToHomePage)
+                                    } else {
+                                        Toast.makeText(
+                                            this,
+                                            it.exception.toString(),
+                                            Toast.LENGTH_SHORT
+                                        )
+                                            .show()
+                                    }
+                                }
+                        }
+                        else {
+                            Toast.makeText(
+                                this,
+                                "Password requires a minimum of 8 characters, at least one number, and at least one special character",
+                                Toast.LENGTH_LONG
+                            ).show()
                         }
                     }
                     else {
-                        Toast.makeText(this, "Password requires a minimum of 8 characters, at least one number, and at least one special character", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, "Password's don't match", Toast.LENGTH_SHORT).show()
                     }
                 }
                 else {
-                    Toast.makeText(this, "Password's don't match", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,"No special characters allowed in username",Toast.LENGTH_SHORT).show()
                 }
+
             }
             else {
                 Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
