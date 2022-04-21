@@ -1,15 +1,5 @@
-package com.example.brightplate.main
+package com.example.brightplate.controllers
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.widget.Toast
-import androidx.core.content.ContextCompat
-import com.example.brightplate.databinding.ActivityUserSignupBinding
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.ktx.Firebase
-import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 object UserRegisterValidator {

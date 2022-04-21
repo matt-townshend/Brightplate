@@ -1,5 +1,6 @@
 package com.example.brightplate.main
 
+import com.example.brightplate.controllers.UserRegisterValidator
 import org.junit.Assert
 import org.junit.Assert.*
 
@@ -31,10 +32,10 @@ class UserSignupTest {
         val user3 = "useruseruseruseruseruser123" //more than 15 characters: should return false
         val user4 = "user123" //successful username: should return true
 
-        assertEquals(false,UserRegisterValidator.checkUsername(user1))
-        assertEquals(false,UserRegisterValidator.checkUsername(user2))
-        assertEquals(false,UserRegisterValidator.checkUsername(user3))
-        assertEquals(true,UserRegisterValidator.checkUsername(user4))
+        assertEquals(false, UserRegisterValidator.checkUsername(user1))
+        assertEquals(false, UserRegisterValidator.checkUsername(user2))
+        assertEquals(false, UserRegisterValidator.checkUsername(user3))
+        assertEquals(true, UserRegisterValidator.checkUsername(user4))
     }
 
     @Test
@@ -70,11 +71,16 @@ class UserSignupTest {
         val pass5 = "password123!"
         val confirmPass5 = "password123!"
 
-        assertEquals("Password's don't match",UserRegisterValidator.createUser(email1,username1,pass1,confirmPass1))
-        assertEquals("Password requires a minimum of 8 characters, at least one number, and at least one special character",UserRegisterValidator.createUser(email2,username2,pass2,confirmPass2))
-        assertEquals("No special characters allowed in username",UserRegisterValidator.createUser(email3,username3,pass3,confirmPass3))
-        assertEquals("Please fill out all fields",UserRegisterValidator.createUser(email4,username4,pass4,confirmPass4))
-        assertEquals("Account successfully created",UserRegisterValidator.createUser(email5,username5,pass5,confirmPass5))
+        assertEquals("Password's don't match",
+            UserRegisterValidator.createUser(email1,username1,pass1,confirmPass1))
+        assertEquals("Password requires a minimum of 8 characters, at least one number, and at least one special character",
+            UserRegisterValidator.createUser(email2,username2,pass2,confirmPass2))
+        assertEquals("No special characters allowed in username",
+            UserRegisterValidator.createUser(email3,username3,pass3,confirmPass3))
+        assertEquals("Please fill out all fields",
+            UserRegisterValidator.createUser(email4,username4,pass4,confirmPass4))
+        assertEquals("Account successfully created",
+            UserRegisterValidator.createUser(email5,username5,pass5,confirmPass5))
 
     }
 }
