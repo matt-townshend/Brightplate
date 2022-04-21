@@ -6,11 +6,13 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.brightplate.databinding.ActivityUserSignupBinding
 import com.google.firebase.auth.FirebaseAuth
+import java.util.regex.Matcher
+import java.util.regex.Pattern
 
 class UserSignup : AppCompatActivity() {
 
     private lateinit var binding:ActivityUserSignupBinding
-    private lateinit var auth: FirebaseAuth;
+    private lateinit var auth: FirebaseAuth
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,6 +22,17 @@ class UserSignup : AppCompatActivity() {
         setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
+
+        fun checkPass(pass: String) : Boolean{
+            val passwordREGEX = Pattern.compile("^" +
+                    "(?=.*[0-9])" +         //at least 1 digit
+                    "(?=.*[a-zA-Z])" +      //any letter
+                    "(?=.*[!@#$%^&+=])" +    //at least 1 special character
+                    "(?=\\S+$)" +           //no white spaces
+                    ".{8,}" +               //at least 8 characters
+                    "$")
+            return passwordREGEX.matcher(pass).matches()
+        }
 
         binding.alreadyUserTextView.setOnClickListener(){
             val goToSignin = Intent(this, UserSignin::class.java)
@@ -33,14 +46,20 @@ class UserSignup : AppCompatActivity() {
 
             if (email.isNotEmpty() && password.isNotEmpty() && confirmPassword.isNotEmpty()) {
                 if(password == confirmPassword) {
-                    auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener{
-                        if(it.isSuccessful) {
-                            auth.signInWithEmailAndPassword(email, password)
-                            val goToHomePage = Intent(this, HomePage::class.java)
-                            startActivity(goToHomePage)
-                        }else {
-                            Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+                    if(checkPass(password)) {
+                        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
+                            if (it.isSuccessful) {
+                                auth.signInWithEmailAndPassword(email, password)
+                                val goToHomePage = Intent(this, HomePage::class.java)
+                                startActivity(goToHomePage)
+                            } else {
+                                Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT)
+                                    .show()
+                            }
                         }
+                    }
+                    else {
+                        Toast.makeText(this, "Password requires a minimum of 8 characters, at least one number, and at least one special character", Toast.LENGTH_LONG).show()
                     }
                 }
                 else {

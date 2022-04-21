@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "943465335945",
+    "firebase_url": "https://brightplate-b45c1-default-rtdb.firebaseio.com",
+    "project_id": "brightplate-b45c1",
+    "storage_bucket": "brightplate-b45c1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:943465335945:android:2f81c6cd64f8a2f6c98a58",
+        "android_client_info": {
+          "package_name": "com.example.brightplate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "943465335945-st6ego50r6t0ah5652e2fnmpf05ig3p6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQT81t_DDLGhUCertkBbyIol69l3EcDns"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "943465335945-st6ego50r6t0ah5652e2fnmpf05ig3p6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
