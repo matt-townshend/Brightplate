@@ -1,7 +1,5 @@
 package com.example.brightplate.main
 
-import com.example.brightplate.controllers.UserRegisterValidator
-import org.junit.Assert
 import org.junit.Assert.*
 
 import org.junit.Test

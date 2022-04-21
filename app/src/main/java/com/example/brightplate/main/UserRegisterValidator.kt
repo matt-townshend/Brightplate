@@ -1,4 +1,4 @@
-package com.example.brightplate.controllers
+package com.example.brightplate.main
 
 import java.util.regex.Pattern
 
