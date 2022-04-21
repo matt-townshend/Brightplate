@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.example.brightplate.databinding.ActivityUserSignupBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -13,89 +14,50 @@ import java.util.regex.Pattern
 
 class UserSignup : AppCompatActivity() {
 
-    private lateinit var binding:ActivityUserSignupBinding
+    private lateinit var binding: ActivityUserSignupBinding
     private lateinit var auth: FirebaseAuth
-    private lateinit var ref: FirebaseDatabase
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
+
         binding = ActivityUserSignupBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        auth = FirebaseAuth.getInstance()
-
-        fun checkPass(pass: String) : Boolean{
-            val passwordREGEX = Pattern.compile("^" +
-                    "(?=.*[0-9])" +         //at least 1 digit
-                    "(?=.*[a-zA-Z])" +      //any letter
-                    "(?=.*[!@#$%^&+=])" +    //at least 1 special character
-                    "(?=\\S+$)" +           //no white spaces
-                    ".{8,}" +               //at least 8 characters
-                    "$")
-            return passwordREGEX.matcher(pass).matches()
-        }
-
-        fun checkUsername(username: String) : Boolean{
-            val usernameREGEX = Pattern.compile("^"+"[a-zA-Z0-9]{5,15}"+"$")
-            return usernameREGEX.matcher(username).matches()
-        }
-
-        binding.alreadyUserTextView.setOnClickListener(){
+        binding.alreadyUserTextView.setOnClickListener() {
             val goToSignin = Intent(this, UserSignin::class.java)
             startActivity(goToSignin)
         }
 
-        binding.createAccountButton.setOnClickListener{
+        binding.createAccountButton.setOnClickListener {
             val email = binding.editTextEmailAddress.text.toString()
             val username = binding.editTextUsername.text.toString()
             val password = binding.editTextPassword.text.toString()
             val confirmPassword = binding.editTextConfirmPassword.text.toString()
+            val userMessage =
+                UserRegisterValidator.createUser(email, username, password, confirmPassword)
+            Toast.makeText(this, userMessage, Toast.LENGTH_SHORT).show()
+            if (userMessage == "Account successfully created") {
+                auth = FirebaseAuth.getInstance()
+                auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        auth.signInWithEmailAndPassword(email, password)
 
-            if (email.isNotEmpty() && username.isNotEmpty() && password.isNotEmpty() && confirmPassword.isNotEmpty()) {
-                if(checkUsername(username)) {
-                    if (password == confirmPassword) {
-                        if (checkPass(password)) {
-                            auth.createUserWithEmailAndPassword(email, password)
-                                .addOnCompleteListener {
-                                    if (it.isSuccessful) {
-                                        auth.signInWithEmailAndPassword(email, password)
+                        var database = FirebaseDatabase.getInstance()
+                            .getReference("users/" + auth.uid.toString())
+                        database.child("username").setValue(username)
 
-                                        var database = FirebaseDatabase.getInstance().getReference("users/"+auth.uid.toString())
-                                        database.child("username").setValue(username)
+                        val goToHomePage = Intent(this, HomePage::class.java)
+                        startActivity(goToHomePage)
 
-                                        val goToHomePage = Intent(this, HomePage::class.java)
-                                        startActivity(goToHomePage)
-                                    } else {
-                                        Toast.makeText(
-                                            this,
-                                            it.exception.toString(),
-                                            Toast.LENGTH_SHORT
-                                        )
-                                            .show()
-                                    }
-                                }
-                        }
-                        else {
-                            Toast.makeText(
-                                this,
-                                "Password requires a minimum of 8 characters, at least one number, and at least one special character",
-                                Toast.LENGTH_LONG
-                            ).show()
-                        }
                     }
                     else {
-                        Toast.makeText(this, "Password's don't match", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, it.exception.toString(),Toast.LENGTH_SHORT).show()
                     }
-                }
-                else {
-                    Toast.makeText(this,"No special characters allowed in username",Toast.LENGTH_SHORT).show()
-                }
 
-            }
-            else {
-                Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+
+                }
             }
         }
     }
