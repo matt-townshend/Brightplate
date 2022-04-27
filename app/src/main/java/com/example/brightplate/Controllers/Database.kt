@@ -1,4 +1,9 @@
 package com.example.brightplate.controllers
 
-class Database {
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+
+class Database
+{
+    val database = Firebase.database
 }
