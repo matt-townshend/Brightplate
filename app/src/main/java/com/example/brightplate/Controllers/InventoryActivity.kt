@@ -15,12 +15,12 @@ class InventoryActivity : AppCompatActivity() {
         val editButton: Button = findViewById(R.id.edit_inventory_btn)
 
         viewButton.setOnClickListener {
-            val viewInventory = Intent(this@InventoryActivity, InventoryViewActivity::class.java)
+            val viewInventory = Intent(this@InventoryActivity, InventoryEditActivity::class.java)
             startActivity(viewInventory)
         }
 
         editButton.setOnClickListener {
-            val editInventory = Intent(this@InventoryActivity, InventoryEditActivity::class.java)
+            val editInventory = Intent(this@InventoryActivity, InventoryViewActivity::class.java)
             startActivity(editInventory)
         }
 

@@ -11,10 +11,13 @@
         android:theme="@style/Theme.Brightplate">
         <activity
             android:name=".controllers.InventoryViewActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".controllers.InventoryEditActivity"
-            android:exported="true" />
+            android:exported="false" />
+        <activity
+            android:name=".controllers.TestActivity"
+            android:exported="false" />
         <activity
             android:name=".controllers.InventoryActivity"
             android:exported="true" />
