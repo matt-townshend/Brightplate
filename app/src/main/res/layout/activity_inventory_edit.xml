@@ -4,6 +4,92 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".controllers.InventoryEditActivity">
+    tools:context=".controllers.InventoryEditActivity"
+    android:background="@drawable/inventory_view_edit_background"
+    >
+
+
+    <TextView
+        android:id="@+id/InventoryActivityEditTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/app_inventory_btn_edit"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/IngredientNameInput"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:width="400dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        android:text="Enter Ingredient Name"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/InventoryActivityEditTitle" />
+
+    <Spinner
+        android:id="@+id/IngredientUnitTypeSpinner"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="50dp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/IngredientQuantityInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IngredientNameInput" />
+
+    <Button
+        android:id="@+id/IngredientAddButton"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="79dp"
+        android:layout_marginBottom="292dp"
+        android:backgroundTint="@color/black"
+        android:text="Add"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/IngredientRemoveButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IngredientQuantityInput" />
+
+    <Button
+        android:id="@+id/IngredientRemoveButton"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="79dp"
+        android:layout_marginBottom="292dp"
+        android:backgroundTint="@color/black"
+        android:text="Remove"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/IngredientAddButton"
+        app:layout_constraintTop_toBottomOf="@+id/IngredientQuantityInput" />
+
+    <EditText
+        android:id="@+id/IngredientQuantityInput"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:ems="10"
+        android:inputType="number"
+        android:padding="10dp"
+        android:text="Enter Amount"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IngredientUnitTypeSpinner" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
