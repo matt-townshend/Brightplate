@@ -10,7 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Brightplate">
         <activity
-            android:name=".main.MainActivity"
+            android:name=".main.HomePage"
+            android:exported="false" />
+        <activity
+            android:name=".main.UserSignup"
+            android:exported="false" />
+        <activity
+            android:name=".main.UserSignin"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
