@@ -2,5 +2,5 @@
     <string name="app_name">Brightplate</string>
     <string name="app_inventory_name">BrightPlate Inventory</string>
     <string name="app_inventory_btn_view">Edit Inventory</string>
-    <string name="app_inventory_btn_edit">View Inventory</string>
+    <string name="app_inventory_btn_edit">Edit Inventory</string>
 </resources>

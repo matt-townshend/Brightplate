@@ -22,6 +22,7 @@ class InventoryEditActivity : AppCompatActivity() {
     lateinit var ingredientName: String
 
     lateinit var dbRef: DatabaseReference
+    lateinit var dbIngRef : DatabaseReference
     var dbPath: String = "Inventory"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -93,8 +94,6 @@ class InventoryEditActivity : AppCompatActivity() {
             ).show()
         }
 
-//        val ingId = dbRef.push().key!!
-
         val ingredient = Ingredient(ingName, ingUnitType, ingAmount)
         dbRef.child(ingName).setValue(ingredient).addOnCompleteListener {
             Toast.makeText(
@@ -106,10 +105,10 @@ class InventoryEditActivity : AppCompatActivity() {
         }
     }
 
-    fun checkExistingIngredients(ingName : String) : Boolean {
+    fun checkExistingIngredients(ingName : String)  {
+        dbIngRef = FirebaseDatabase.getInstance().getReference().child(this.dbPath);
 
-        return false
+        dbIngRef.orderByChild(ingName)
     }
-
 
 }

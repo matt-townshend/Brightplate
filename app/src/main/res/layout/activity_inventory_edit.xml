@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="@string/app_inventory_btn_edit"
+        android:text="Edit Inventory"
         android:textColor="@color/black"
         android:textSize="30dp"
         android:textStyle="bold"
@@ -24,14 +24,15 @@
 
     <EditText
         android:id="@+id/IngredientNameInput"
-        android:layout_width="350dp"
+        android:layout_width="280dp"
         android:layout_height="50dp"
         android:layout_marginTop="50dp"
         android:width="400dp"
         android:ems="10"
+        android:hint="Enter Ingredient Name"
+        android:background="@drawable/custom_input"
         android:inputType="textPersonName"
         android:padding="10dp"
-        android:hint="Enter Ingredient Name"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +40,9 @@
 
     <Spinner
         android:id="@+id/IngredientUnitTypeSpinner"
-        android:layout_width="350dp"
+        android:background="@drawable/custom_input"
+        android:autofillHints="Unit"
+        android:layout_width="280dp"
         android:layout_height="50dp"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="50dp"
@@ -49,26 +52,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/IngredientNameInput" />
 
+
     <EditText
         android:id="@+id/IngredientQuantityInput"
-        android:layout_width="350dp"
+        android:layout_width="280dp"
         android:layout_height="50dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:ems="10"
-        android:inputType="number"
-        android:padding="10dp"
         android:hint="Enter Amount"
+        android:inputType="number"
+        android:background="@drawable/custom_input"
+        android:padding="10dp"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/IngredientUnitTypeSpinner" />
 
-
     <Button
         android:id="@+id/IngredientAddButton"
         android:layout_width="100dp"
         android:layout_height="50dp"
-        android:layout_marginTop="79dp"
+        android:layout_marginTop="100dp"
         android:layout_marginBottom="292dp"
         android:backgroundTint="@color/black"
         android:text="Add"
@@ -82,7 +86,7 @@
         android:id="@+id/IngredientRemoveButton"
         android:layout_width="100dp"
         android:layout_height="50dp"
-        android:layout_marginTop="79dp"
+        android:layout_marginTop="100dp"
         android:layout_marginBottom="292dp"
         android:backgroundTint="@color/black"
         android:text="Remove"

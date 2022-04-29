@@ -4,7 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/matth/AndroidStudioProjects/Brightplate/app/src/main/res/layout/activity_main.xml" value="0.31145833333333334" />
-        <entry key="app/src/main/res/layout/activity_inventory_edit.xml" value="0.15020263424518743" />
+        <entry key="app/src/main/res/drawable/custom_input.xml" value="0.168" />
+        <entry key="app/src/main/res/layout/activity_inventory_edit.xml" value="0.24214904537799986" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1743659420289855" />
       </map>
     </option>
