@@ -31,7 +31,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:padding="10dp"
-        android:text="Enter Ingredient Name"
+        android:hint="Enter Ingredient Name"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,6 +48,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/IngredientNameInput" />
+
+    <EditText
+        android:id="@+id/IngredientQuantityInput"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:ems="10"
+        android:inputType="number"
+        android:padding="10dp"
+        android:hint="Enter Amount"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IngredientUnitTypeSpinner" />
+
 
     <Button
         android:id="@+id/IngredientAddButton"
@@ -76,20 +91,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/IngredientAddButton"
         app:layout_constraintTop_toBottomOf="@+id/IngredientQuantityInput" />
-
-    <EditText
-        android:id="@+id/IngredientQuantityInput"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="50dp"
-        android:ems="10"
-        android:inputType="number"
-        android:padding="10dp"
-        android:text="Enter Amount"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/IngredientUnitTypeSpinner" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
