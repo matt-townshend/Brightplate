@@ -93,7 +93,7 @@ class InventoryEditActivity : AppCompatActivity() {
         } else {
             auth = FirebaseAuth.getInstance()
             var db = FirebaseDatabase.getInstance().getReference("users")
-            userId = db.child(auth.uid.toString()).get() as String
+            userId = auth.uid.toString()
 
             val ingredient = Ingredient(ingName, ingUnitType, ingAmount)
             dbRef.child(userId).child(ingName).setValue(ingredient).addOnCompleteListener {
@@ -104,7 +104,6 @@ class InventoryEditActivity : AppCompatActivity() {
                 ).show()
             }.addOnFailureListener {
             }
-
         }
     }
 
