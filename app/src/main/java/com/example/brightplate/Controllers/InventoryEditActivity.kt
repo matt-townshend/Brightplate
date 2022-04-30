@@ -24,7 +24,6 @@ class InventoryEditActivity : AppCompatActivity() {
     private lateinit var ingredientName: String
 
     private lateinit var dbRef: DatabaseReference
-    private lateinit var dbIngRef: DatabaseReference
     private lateinit var userId: String
     private var dbPath: String = "Inventory"
     private lateinit var auth: FirebaseAuth
@@ -65,15 +64,16 @@ class InventoryEditActivity : AppCompatActivity() {
         }
 
         addBtn.setOnClickListener() {
-            ingredientName = ingredientNameInput.text.toString()
+            ingredientName = ingredientNameInput.text.toString().toLowerCase()
             ingredientAmount = ingredientQuantity.text.toString().toDouble()
             saveIngredient(ingredientName, ingredientAmount, ingredientUnitType)
         }
 
         removeBtn.setOnClickListener() {
-            Toast.makeText(applicationContext, "Remove Button Selected", Toast.LENGTH_LONG).show()
+            ingredientName = ingredientNameInput.text.toString().toLowerCase()
+            ingredientAmount = ingredientQuantity.text.toString().toDouble()
+            removeIngredient(ingredientName, ingredientAmount, ingredientUnitType)
         }
-
     }
 
     fun saveIngredient(ingName: String, ingAmount: Double, ingUnitType: String) {
@@ -91,12 +91,8 @@ class InventoryEditActivity : AppCompatActivity() {
                 Toast.LENGTH_LONG
             ).show()
         } else {
-            auth = FirebaseAuth.getInstance()
-            var db = FirebaseDatabase.getInstance().getReference("users")
-            userId = auth.uid.toString()
-
             val ingredient = Ingredient(ingName, ingUnitType, ingAmount)
-            dbRef.child(userId).child(ingName).setValue(ingredient).addOnCompleteListener {
+            dbRef.child(getUserId()).child(ingName).setValue(ingredient).addOnCompleteListener {
                 Toast.makeText(
                     applicationContext,
                     "${ingredientName.toUpperCase()} - ${ingredientAmount} ${ingredientUnitType.toUpperCase()} ADDED",
@@ -107,10 +103,73 @@ class InventoryEditActivity : AppCompatActivity() {
         }
     }
 
-    fun checkExistingIngredients(ingName: String) {
-//        dbIngRef = FirebaseDatabase.getInstance().getReference().child(this.dbPath);
+    fun getUserId(): String {
+        auth = FirebaseAuth.getInstance()
+        var db = FirebaseDatabase.getInstance().getReference("users")
+        userId = auth.uid.toString()
+        return userId
+    }
 
-        dbIngRef.orderByChild(ingName)
+    fun checkExistingIngredients(ingName: String) {}
+
+    fun removeIngredient(ingName: String, ingAmount: Double, ingUnitType: String) {
+
+        if (ingName.isEmpty() || ingUnitType.isEmpty()) {
+            Toast.makeText(
+                applicationContext,
+                "Please Make Sure All Fields Are Filled In",
+                Toast.LENGTH_LONG
+            ).show()
+        } else {
+            dbRef = FirebaseDatabase.getInstance().getReference(this.dbPath)
+            dbRef.child(getUserId()).child(ingName).get().addOnSuccessListener {
+                var amount = it.child("ingAmount").value.toString().toDouble()
+                var unit = it.child("ingUnit").value.toString()
+                var newAmount: Double
+
+                if (ingAmount < amount && ingAmount > 0.0) {
+                    if (ingUnitType != unit) {
+                        Toast.makeText(
+                            applicationContext,
+                            "Incorrect Unit Selected",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    } else {
+                        newAmount = amount - ingAmount
+                        dbRef.child(getUserId()).child(ingName).child("ingAmount")
+                            .setValue(newAmount)
+
+                        Toast.makeText(
+                            applicationContext,
+                            "Value Removed, New ingredient amount is ${newAmount} ${unit}",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+
+                } else if (ingAmount == amount) {
+                    if (ingUnitType != unit) {
+                        Toast.makeText(
+                            applicationContext,
+                            "Incorrect Unit Selected",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    } else {
+                        dbRef.child(getUserId()).child(ingName).removeValue()
+                        Toast.makeText(
+                            applicationContext,
+                            "Value Removed Successfully",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                } else {
+                    Toast.makeText(
+                        applicationContext,
+                        "Invalid Amount, Inventory Amount is  ${amount} ${unit}",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+        }
     }
 
 }
