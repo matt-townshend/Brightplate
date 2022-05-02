@@ -32,8 +32,7 @@ class UserSignin : AppCompatActivity() {
             if (email.isNotEmpty() && password.isNotEmpty()) {
                 auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
                     if (it.isSuccessful) {
-                        val goToHomePage = Intent(this, HomePage::class.java)
-                        startActivity(goToHomePage)
+
                     } else {
                         Toast.makeText(this, "Email or pass is incorrect", Toast.LENGTH_SHORT).show()
                     }

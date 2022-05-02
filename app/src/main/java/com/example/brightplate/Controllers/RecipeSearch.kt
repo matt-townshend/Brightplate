@@ -18,6 +18,8 @@ object RecipeSearch {
         var ingredientList: ArrayList<Ingredient>
         ingredientList = arrayListOf(Ingredient())
 
+        auth = FirebaseAuth.getInstance()
+
         val userID: String = auth.uid.toString()
         db = FirebaseDatabase.getInstance().getReference("Users/"+userID+"/Ingredients")
         db.addValueEventListener(object: ValueEventListener {
