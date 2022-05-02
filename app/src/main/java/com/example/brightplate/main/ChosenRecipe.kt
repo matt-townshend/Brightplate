@@ -25,10 +25,11 @@ class ChosenRecipe : AppCompatActivity()
         binding = ActivityChosenRecipeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        recyclerView = findViewById(R.id.recyclerView_recipeSelection)
+        //recyclerView = findViewById(R.id.recyclerView_recipeSelection)
 
+        val selectedRecipe = intent.getStringExtra("Recipe")
         database = FirebaseDatabase.getInstance().getReference("Recipes")
-        database.child("Noodles").get().addOnSuccessListener {
+        database.child(selectedRecipe.toString()).get().addOnSuccessListener {
 
             if(it.exists())
             {

@@ -45,8 +45,8 @@ class RecipeListActivity : AppCompatActivity(), RecyclerAdapter.OnRecipeItemClic
                 {
                     for(recipeSnapshot in snapshot.children)
                     {
-                        val recipe = recipeSnapshot.getValue(Recipe::class.java)
-                        recipeArrayList.add(recipe!!)
+                        val recipe = recipeSnapshot.key.toString()
+                        recipeArrayList.add(Recipe(recipe))
                     }
 
                 }
@@ -68,6 +68,7 @@ class RecipeListActivity : AppCompatActivity(), RecyclerAdapter.OnRecipeItemClic
     override fun onClick(position: Int) {
         Toast.makeText(this, "${recipeArrayList[position].getRecipeName()}: Position $position clicked!", Toast.LENGTH_SHORT).show()
         val intent = Intent(this@RecipeListActivity, ChosenRecipe:: class.java)
+        intent.putExtra("Recipe", recipeArrayList[position].getRecipeName())
         startActivity(intent)
     }
 
