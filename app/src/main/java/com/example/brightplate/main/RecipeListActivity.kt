@@ -1,4 +1,4 @@
-package com.example.brightplate
+package com.example.brightplate.main
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,11 +6,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.brightplate.main.ChosenRecipe
-import com.example.brightplate.main.RecyclerAdapter
+import com.example.brightplate.R
 import com.example.brightplate.models.Recipe
 import com.google.firebase.database.*
-import kotlin.properties.Delegates
 
 class RecipeListActivity : AppCompatActivity(), RecyclerAdapter.OnRecipeItemClickListener{
 
@@ -29,11 +27,6 @@ class RecipeListActivity : AppCompatActivity(), RecyclerAdapter.OnRecipeItemClic
         recipeArrayList = arrayListOf<Recipe>()
         getRecipeData()
 
-    }
-
-    fun getRecipeList(): ArrayList<Recipe>
-    {
-        return recipeArrayList
     }
 
     private fun getRecipeData()

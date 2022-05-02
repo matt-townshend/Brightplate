@@ -11,7 +11,6 @@ import com.example.brightplate.models.Recipe
 class RecyclerAdapter(private val recipeList: ArrayList<Recipe>,
 private val onRecipeClickListener: OnRecipeItemClickListener): RecyclerView.Adapter<RecyclerAdapter.ViewHolder>(){
 
-    private lateinit var recipeItem: Recipe
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.activity_choserecipe_customlayout, parent, false)

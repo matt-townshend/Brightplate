@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Brightplate">
         <activity
-            android:name=".RecipeListActivity"
+            android:name=".main.RecipeListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
