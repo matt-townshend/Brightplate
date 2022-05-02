@@ -10,7 +10,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.example.brightplate.Models.Ingredient
+import com.example.brightplate.models.Ingredient
 import com.example.brightplate.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
