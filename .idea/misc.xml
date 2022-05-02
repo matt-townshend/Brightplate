@@ -3,19 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-<<<<<<< HEAD
-        <entry key="..\:/Users/matth/AndroidStudioProjects/Brightplate/app/src/main/res/layout/activity_main.xml" value="0.31145833333333334" />
-        <entry key="app/src/main/res/drawable/custom_input.xml" value="0.168" />
-        <entry key="app/src/main/res/layout/activity_inventory_edit.xml" value="0.24214904537799986" />
-=======
-        <entry key="..\:/Users/matth/AndroidStudioProjects/Brightplate/app/src/main/res/layout/activity_home_page.xml" value="0.22" />
-        <entry key="..\:/Users/matth/AndroidStudioProjects/Brightplate/app/src/main/res/layout/activity_main.xml" value="0.31145833333333334" />
-        <entry key="..\:/Users/matth/AndroidStudioProjects/Brightplate/app/src/main/res/layout/activity_user_login.xml" value="0.34270833333333334" />
-        <entry key="..\:/Users/matth/AndroidStudioProjects/Brightplate/app/src/main/res/layout/activity_user_loginregister.xml" value="0.34270833333333334" />
-        <entry key="..\:/Users/matth/AndroidStudioProjects/Brightplate/app/src/main/res/layout/activity_user_signin.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/matth/AndroidStudioProjects/Brightplate/app/src/main/res/layout/activity_user_signup.xml" value="0.16666666666666666" />
->>>>>>> development
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1743659420289855" />
+        <entry key="app/src/main/res/layout/activity_recipe_search.xml" value="0.1890625" />
       </map>
     </option>
   </component>
