@@ -1,5 +1,9 @@
 package com.example.brightplate.controllers
 
+/**
+ * @author Ajit Singh
+ * Edit Inventory Activity
+ */
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.brightplate.R

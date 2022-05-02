@@ -15,7 +15,6 @@ import com.example.brightplate.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.ktx.Firebase
 
 
 class InventoryEditActivity : AppCompatActivity() {
@@ -31,7 +30,8 @@ class InventoryEditActivity : AppCompatActivity() {
 
     private lateinit var userId: String
     private lateinit var auth: FirebaseAuth
-    private var dbPath: String = "Inventory"
+    private var dbOuterPath: String = "users"
+    private var dbInnerPath: String = "Inventory"
     private lateinit var dbRef: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +49,7 @@ class InventoryEditActivity : AppCompatActivity() {
         ingredientUnitOption.adapter =
             ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, unitTypeOptions)
 
-        dbRef = FirebaseDatabase.getInstance().getReference(this.dbPath)
+        dbRef = FirebaseDatabase.getInstance().getReference(this.dbOuterPath)
 
         ingredientUnitOption.onItemSelectedListener = object : AdapterView.OnItemSelectedListener,
             AdapterView.OnItemClickListener {
@@ -93,9 +93,11 @@ class InventoryEditActivity : AppCompatActivity() {
      *  @param ingName
      *  @param ingAmount
      *  @param ingUnitType
-     *  saves the ingredient values given by the user into the firebase database named "Inventory"
+     *  saves the ingredient values given by the user into the firebase database named "Users -> Inventory"
      */
     fun saveIngredient(ingName: String, ingAmount: Double, ingUnitType: String) {
+        var ingredientExists: Boolean = false
+        var hasCorrectUnit: Boolean = false
 
         if (ingName.isEmpty() || ingUnitType.isEmpty()) {
             Toast.makeText(
@@ -111,8 +113,8 @@ class InventoryEditActivity : AppCompatActivity() {
             ).show()
         }
 
-        dbRef = FirebaseDatabase.getInstance().getReference(this.dbPath)
-        dbRef.child(getUserId()).child(ingName).get().addOnSuccessListener {
+        dbRef = FirebaseDatabase.getInstance().getReference(this.dbOuterPath)
+        dbRef.child(getUserId()).child("Inventory").child(ingName).get().addOnSuccessListener {
             var dbIngName = it.child("ingName").value.toString()
 
             // if the ingredient already exists in the database then the current ingredient's
@@ -129,9 +131,13 @@ class InventoryEditActivity : AppCompatActivity() {
                         "Incorrect Unit Selected",
                         Toast.LENGTH_SHORT
                     ).show()
-                } else if (ingUnitType == unit) {
+                }
+
+                if (ingUnitType == unit) {
+                    hasCorrectUnit = true
                     newAmount = amount + ingAmount
-                    dbRef.child(getUserId()).child(ingName).child("ingAmount").setValue(newAmount)
+                    dbRef.child(getUserId()).child("Inventory").child(ingName).child("ingAmount")
+                        .setValue(newAmount)
 
                     Toast.makeText(
                         applicationContext,
@@ -142,16 +148,18 @@ class InventoryEditActivity : AppCompatActivity() {
             }
         }
 
-        // if the ingredient does not exist, then it is added with the amount entered by the user
-        val ingredient = Ingredient(ingName, ingUnitType, ingAmount)
-        dbRef.child(getUserId()).child(ingName).setValue(ingredient)
-            .addOnCompleteListener {
-                Toast.makeText(
-                    applicationContext,
-                    "${ingredientName.toUpperCase()} - ${ingredientAmount} ${ingredientUnitType.toUpperCase()} ADDED",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
+        if (!ingredientExists && hasCorrectUnit) {
+            // if the ingredient does not exist, then it is added with the amount entered by the user
+            val ingredient = Ingredient(ingName, ingUnitType, ingAmount)
+            dbRef.child(getUserId()).child("Inventory").child(ingName).setValue(ingredient)
+                .addOnCompleteListener {
+                    Toast.makeText(
+                        applicationContext,
+                        "${ingredientName.toUpperCase()} - ${ingredientAmount} ${ingredientUnitType.toUpperCase()} ADDED",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+        }
 
     }
 
@@ -169,58 +177,61 @@ class InventoryEditActivity : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
         } else {
-            dbRef = FirebaseDatabase.getInstance().getReference(this.dbPath)
-            dbRef.child(getUserId()).child(ingName).get().addOnSuccessListener {
-                var amount = it.child("ingAmount").value.toString().toDouble()
-                var unit = it.child("ingUnit").value.toString()
-                var newAmount: Double
+            dbRef = FirebaseDatabase.getInstance().getReference(this.dbOuterPath)
+            dbRef.child(getUserId()).child(this.dbInnerPath).child(ingName).get()
+                .addOnSuccessListener {
+                    var amount = it.child("ingAmount").value.toString().toDouble()
+                    var unit = it.child("ingUnit").value.toString()
+                    var newAmount: Double
 
-                // if the amount is entered is between 0 and the ingredient amount on the database
-                // the ingredient database value is update appropriately
-                if (ingAmount < amount && ingAmount > 0.0) {
-                    if (ingUnitType != unit) {
-                        Toast.makeText(
-                            applicationContext,
-                            "Incorrect Unit Selected",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                    // if the amount is entered is between 0 and the ingredient amount on the database
+                    // the ingredient database value is update appropriately
+                    if (ingAmount < amount && ingAmount > 0.0) {
+                        if (ingUnitType != unit) {
+                            Toast.makeText(
+                                applicationContext,
+                                "Incorrect Unit Selected",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            // subtracting the amount
+                            newAmount = amount - ingAmount
+                            dbRef.child(getUserId()).child(this.dbInnerPath).child(ingName)
+                                .child("ingAmount")
+                                .setValue(newAmount)
+
+                            Toast.makeText(
+                                applicationContext,
+                                "Value Removed, New ingredient amount is ${newAmount} ${unit}",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                        // if the amount is exactly equal to the total amount, then the whole value is removed
+                    } else if (ingAmount == amount) {
+                        if (ingUnitType != unit) {
+                            Toast.makeText(
+                                applicationContext,
+                                "Incorrect Unit Selected",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            dbRef.child(getUserId()).child(this.dbInnerPath).child(ingName)
+                                .removeValue()
+                            Toast.makeText(
+                                applicationContext,
+                                "Value Removed Successfully",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     } else {
-                        // subtracting the amount
-                        newAmount = amount - ingAmount
-                        dbRef.child(getUserId()).child(ingName).child("ingAmount")
-                            .setValue(newAmount)
-
                         Toast.makeText(
                             applicationContext,
-                            "Value Removed, New ingredient amount is ${newAmount} ${unit}",
+                            "Invalid Amount, Inventory Amount is  ${amount} ${unit}",
                             Toast.LENGTH_SHORT
                         ).show()
                     }
-
-                    // if the amount is exactly equal to the total amount, then the whole value is removed
-                } else if (ingAmount == amount) {
-                    if (ingUnitType != unit) {
-                        Toast.makeText(
-                            applicationContext,
-                            "Incorrect Unit Selected",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    } else {
-                        dbRef.child(getUserId()).child(ingName).removeValue()
-                        Toast.makeText(
-                            applicationContext,
-                            "Value Removed Successfully",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                } else {
-                    Toast.makeText(
-                        applicationContext,
-                        "Invalid Amount, Inventory Amount is  ${amount} ${unit}",
-                        Toast.LENGTH_SHORT
-                    ).show()
                 }
-            }
         }
     }
 }
