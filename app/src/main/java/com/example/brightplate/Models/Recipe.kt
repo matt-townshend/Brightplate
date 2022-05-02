@@ -3,10 +3,17 @@ package com.example.brightplate.models
 
 class Recipe
 {
-    var recipeDesc = ""
+    private lateinit var recipeName: String
+    private lateinit var recipeDesc: String
 
-    constructor(recipeDesc: String)
+    fun getRecipeName(): String
     {
-        this.recipeDesc = recipeDesc
+        return recipeName
+    }
+
+    fun getRecipeDescription(): String
+    {
+        return recipeDesc
     }
 }
+

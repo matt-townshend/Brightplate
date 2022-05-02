@@ -5,7 +5,7 @@
     android:id="@+id/equipment_needed"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".models.activity_chosenRecipe">
+    tools:context=".main.ChosenRecipe">
 
     <TextView
         android:id="@+id/recipe_name"
