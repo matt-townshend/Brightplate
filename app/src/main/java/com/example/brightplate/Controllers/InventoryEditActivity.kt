@@ -148,7 +148,7 @@ class InventoryEditActivity : AppCompatActivity() {
             }
         }
 
-        if (!ingredientExists && hasCorrectUnit) {
+        if (!ingredientExists) {
             // if the ingredient does not exist, then it is added with the amount entered by the user
             val ingredient = Ingredient(ingName, ingUnitType, ingAmount)
             dbRef.child(getUserId()).child("Inventory").child(ingName).setValue(ingredient)
