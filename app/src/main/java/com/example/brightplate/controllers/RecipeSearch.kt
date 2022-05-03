@@ -91,7 +91,7 @@ object RecipeSearch {
             ingredientCount = 0
             for (j in i.ingredients) {
                 for (k: Ingredient in userIngredientList) {
-                    if (j.ingName.toString().lowercase() == k.ingName.toString().lowercase()
+                    if (j.ingName.lowercase() == k.ingName.lowercase()
                         && j.ingUnit == k.ingUnit
                         && j.ingAmount <= k.ingAmount) {
                         ingredientCount++
