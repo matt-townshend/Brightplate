@@ -15,8 +15,8 @@ class RecipeSearchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        RecipeSearch.getUserInventory()
-        RecipeSearch.getRecipes()
+        RecipeSearch.filterSearchByUserIngredients()
+
 
 
         binding = ActivityRecipeSearchBinding.inflate(layoutInflater)

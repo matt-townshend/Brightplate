@@ -1,5 +1,6 @@
 package com.example.brightplate.Controllers
 
+import android.widget.Toast
 import com.example.brightplate.models.RecipeFind
 import com.example.brightplate.models.Ingredient
 import com.google.firebase.auth.FirebaseAuth
@@ -9,7 +10,6 @@ object RecipeSearch {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var db: DatabaseReference
-    private lateinit var db2: DatabaseReference
 
 
 
@@ -21,12 +21,14 @@ object RecipeSearch {
         auth = FirebaseAuth.getInstance()
 
         val userID: String = auth.uid.toString()
+
+        //TEST USER
         db = FirebaseDatabase.getInstance().getReference("users/"+userID+"/Inventory")
+
         db.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     for (ingredientSnapshot in snapshot.children) {
-                        val ingredient = ingredientSnapshot.key.toString()
 
                         val ingName =
                             snapshot.child("ingName").getValue().toString()
@@ -95,17 +97,30 @@ object RecipeSearch {
 
     fun filterSearchByUserIngredients() {
 
-        var recipeList = getRecipes()
         var userIngredientList = getUserInventory()
+        var recipeList = getRecipes()
+        var ingredientCount = 0
 
         for(i in recipeList) {
             for (j in i.ingredients) {
-                
+                for(k in userIngredientList) {
+                    if(k.ingName==j.ingName && k.ingUnit==j.ingName && k.ingAmount!! >= j.ingAmount!!) {
+                        ingredientCount++
+                        break
+                    }
+                }
+                if(ingredientCount == i.ingredients.size) {
+                   break
+                }
+                else {
+                    recipeList.remove(i)
+                }
             }
+            ingredientCount = 0
         }
 
 
-
+    val h: Int = 723
 
     }
 
