@@ -1,4 +1,4 @@
-package com.example.brightplate.Controllers
+package com.example.brightplate.controllers
 
 import com.example.brightplate.models.RecipeFind
 import com.example.brightplate.models.Ingredient
@@ -9,7 +9,6 @@ object RecipeSearch {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var db: DatabaseReference
-    private lateinit var db2: DatabaseReference
 
 
 
@@ -21,7 +20,7 @@ object RecipeSearch {
         auth = FirebaseAuth.getInstance()
 
         val userID: String = auth.uid.toString()
-        db = FirebaseDatabase.getInstance().getReference("users/"+userID+"/Inventory")
+        db = FirebaseDatabase.getInstance().getReference("users/null/Inventory")
         db.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
@@ -41,6 +40,8 @@ object RecipeSearch {
 
 
             }
+
+
 
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
@@ -93,13 +94,6 @@ object RecipeSearch {
         return recipeList
     }
 
-    fun filterSearchByIngredients(recipeList: ArrayList<RecipeFind>, userIngredients: ArrayList<Ingredient>) {
 
-        var recipeList = getRecipes()
-        var userIngredients = getUserInventory()
-
-
-
-    }
 
 }
