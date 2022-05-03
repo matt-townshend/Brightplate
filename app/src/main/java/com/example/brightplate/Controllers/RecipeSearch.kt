@@ -1,8 +1,7 @@
 package com.example.brightplate.Controllers
 
-import com.example.brightplate.main.RecyclerAdapter
+import com.example.brightplate.models.RecipeFind
 import com.example.brightplate.models.Ingredient
-import com.example.brightplate.models.Recipe
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
@@ -14,29 +13,29 @@ object RecipeSearch {
 
 
 
-    fun getUserInventory() {
+    fun getUserInventory() : ArrayList<Ingredient>{
         var ingredientList: ArrayList<Ingredient>
         ingredientList = arrayListOf(Ingredient())
 
         auth = FirebaseAuth.getInstance()
 
         val userID: String = auth.uid.toString()
-        db = FirebaseDatabase.getInstance().getReference("Users/"+userID+"/Ingredients")
+        db = FirebaseDatabase.getInstance().getReference("users/"+userID+"/Inventory")
         db.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     for (ingredientSnapshot in snapshot.children) {
                         val ingredient = ingredientSnapshot.key.toString()
+
                         val ingName =
-                            ingredientSnapshot.child(ingredient + "/imgName").value.toString()
+                            snapshot.child("ingName").getValue().toString()
                         val ingUnit =
-                            ingredientSnapshot.child(ingredient + "/imgUnit").value.toString()
+                            ingredientSnapshot.child("ingUnit").getValue().toString()
                         val ingAmount =
-                            ingredientSnapshot.child(ingredient + "/imgAmount").value.toString()
-                                .toDouble()
+                            ingredientSnapshot.child("ingAmount").getValue().toString()
+                                .toDoubleOrNull()
                         ingredientList.add(Ingredient(ingName, ingUnit, ingAmount))
                     }
-                    val test ="hsdh"
                 }
 
 
@@ -47,6 +46,49 @@ object RecipeSearch {
             }
 
         })
+        return ingredientList
+    }
+
+    fun getRecipes() : ArrayList<RecipeFind>{
+
+        var recipeList: ArrayList<RecipeFind>
+
+        var tempIngredientList: ArrayList<Ingredient> = arrayListOf(Ingredient())
+        recipeList = arrayListOf(RecipeFind("def",tempIngredientList))
+
+        db = FirebaseDatabase.getInstance().getReference("Recipes")
+        db.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (recipeSnapshot in snapshot.children) {
+
+                        val recName =
+                            recipeSnapshot.child("RecipeName").getValue().toString()
+
+
+                        for(ingredientSnapshot in snapshot.child("Ingredients").children) {
+                            val ingName =
+                                ingredientSnapshot.child("ingName").getValue().toString()
+                            val ingUnit =
+                                ingredientSnapshot.child("ingUnit").getValue().toString()
+                            val ingAmount =
+                                ingredientSnapshot.child("ingAmount").getValue().toString()
+                                    .toDoubleOrNull()
+                            tempIngredientList.add(Ingredient(ingName, ingUnit, ingAmount))
+                        }
+                        recipeList.add(RecipeFind(recName,tempIngredientList))
+                    }
+                }
+
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+        return recipeList
     }
 
 }

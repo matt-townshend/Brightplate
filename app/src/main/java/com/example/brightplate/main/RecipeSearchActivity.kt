@@ -16,6 +16,7 @@ class RecipeSearchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         RecipeSearch.getUserInventory()
+        RecipeSearch.getRecipes()
 
 
         binding = ActivityRecipeSearchBinding.inflate(layoutInflater)
