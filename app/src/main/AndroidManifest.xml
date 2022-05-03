@@ -15,10 +15,10 @@
             android:exported="true" />
         <activity
             android:name=".controllers.InventoryViewActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".controllers.InventoryEditActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".controllers.InventoryActivity"
             android:exported="true" />
@@ -27,7 +27,7 @@
             android:exported="false" />
         <activity
             android:name=".main.UserSignup"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".main.UserSignin"
             android:exported="true">
