@@ -9,6 +9,7 @@ object RecipeSearch {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var db: DatabaseReference
+    private lateinit var db2: DatabaseReference
 
 
 
@@ -56,6 +57,7 @@ object RecipeSearch {
         var tempIngredientList: ArrayList<Ingredient> = arrayListOf(Ingredient())
         recipeList = arrayListOf(RecipeFind("def",tempIngredientList))
 
+
         db = FirebaseDatabase.getInstance().getReference("Recipes")
         db.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -63,20 +65,19 @@ object RecipeSearch {
                     for (recipeSnapshot in snapshot.children) {
 
                         val recName =
-                            recipeSnapshot.child("RecipeName").getValue().toString()
+                            recipeSnapshot.child("RecipeName").value.toString()
 
 
-                        for(ingredientSnapshot in snapshot.child("Ingredients").children) {
-                            val ingName =
-                                ingredientSnapshot.child("ingName").getValue().toString()
-                            val ingUnit =
-                                ingredientSnapshot.child("ingUnit").getValue().toString()
-                            val ingAmount =
-                                ingredientSnapshot.child("ingAmount").getValue().toString()
-                                    .toDoubleOrNull()
-                            tempIngredientList.add(Ingredient(ingName, ingUnit, ingAmount))
+                        for(recipeIngredientSnapshot in recipeSnapshot.child("Ingredients").children) {
+                            val ingName = recipeIngredientSnapshot.child("ingName").getValue().toString()
+                            val ingAmount = recipeIngredientSnapshot.child("ingAmount").getValue().toString().toDoubleOrNull()
+                            val ingUnit = recipeIngredientSnapshot.child("ingUnit").getValue().toString()
+
+                            tempIngredientList.add(Ingredient(ingName,ingUnit, ingAmount))
                         }
                         recipeList.add(RecipeFind(recName,tempIngredientList))
+                        tempIngredientList.clear()
+
                     }
                 }
 
@@ -88,7 +89,17 @@ object RecipeSearch {
             }
 
         })
+
         return recipeList
+    }
+
+    fun filterSearchByIngredients(recipeList: ArrayList<RecipeFind>, userIngredients: ArrayList<Ingredient>) {
+
+        var recipeList = getRecipes()
+        var userIngredients = getUserInventory()
+
+
+
     }
 
 }
