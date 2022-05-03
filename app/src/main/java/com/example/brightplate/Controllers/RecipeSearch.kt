@@ -93,13 +93,19 @@ object RecipeSearch {
         return recipeList
     }
 
-    fun filterSearchByIngredients(recipeList: ArrayList<RecipeFind>, userIngredients: ArrayList<Ingredient>) {
+    fun filterSearchByUserIngredients() {
 
         var recipeList = getRecipes()
-        var userIngredients = getUserInventory()
+        var userIngredientList = getUserInventory()
 
-        userIngredients[2].ingName
-        recipeList
+        for(i in recipeList) {
+            for (j in i.ingredients) {
+                
+            }
+        }
+
+
+
 
     }
 
