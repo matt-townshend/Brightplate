@@ -11,11 +11,12 @@ object RecipeSearch {
     private lateinit var binding: ActivityRecipeSearchBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var db: DatabaseReference
+    private lateinit var finalRecipes: ArrayList<String>
 
 
-    fun findAllRecipes() {
+    fun findAllRecipes() : ArrayList<String> {
         var userIngredientList: ArrayList<Ingredient> = arrayListOf()
-
+        finalRecipes = arrayListOf()
         auth = FirebaseAuth.getInstance()
 
         val userID: String = auth.uid.toString()
@@ -72,13 +73,14 @@ object RecipeSearch {
 
                     }
 
-                    searchRecipe(recipeList, userIngredientList)
+                   finalRecipes = searchRecipe(recipeList, userIngredientList)
                 }
             }
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
         })
+        return finalRecipes
     }
 
     fun searchRecipe(recipeList: ArrayList<RecipeFind>, userIngredientList: ArrayList<Ingredient>) : ArrayList<String>{
