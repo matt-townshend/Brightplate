@@ -98,7 +98,8 @@ object RecipeSearch {
         var recipeList = getRecipes()
         var userIngredients = getUserInventory()
 
-
+        userIngredients[2].ingName
+        recipeList
 
     }
 
