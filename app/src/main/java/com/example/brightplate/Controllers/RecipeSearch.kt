@@ -23,7 +23,7 @@ object RecipeSearch {
         val userID: String = auth.uid.toString()
 
         //TEST USER
-        db = FirebaseDatabase.getInstance().getReference("users/"+userID+"/Inventory")
+        db = FirebaseDatabase.getInstance().getReference("users/"+auth.uid.toString()+"/Inventory")
 
         db.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -95,10 +95,10 @@ object RecipeSearch {
         return recipeList
     }
 
-    fun filterSearchByUserIngredients() {
+    fun filterSearchByUserIngredients(userIngredientList: ArrayList<Ingredient>, recipeList: ArrayList<RecipeFind>) {
 
-        var userIngredientList = getUserInventory()
-        var recipeList = getRecipes()
+        var userIngredientList = userIngredientList
+        var recipeList = recipeList
         var ingredientCount = 0
 
         for(i in recipeList) {

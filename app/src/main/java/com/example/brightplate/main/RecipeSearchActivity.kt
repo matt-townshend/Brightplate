@@ -15,7 +15,10 @@ class RecipeSearchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        RecipeSearch.filterSearchByUserIngredients()
+        var userIngredients = RecipeSearch.getUserInventory()
+        var recipes = RecipeSearch.getRecipes()
+
+        RecipeSearch.filterSearchByUserIngredients(userIngredients, recipes)
 
 
 
