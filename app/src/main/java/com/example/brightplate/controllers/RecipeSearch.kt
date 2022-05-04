@@ -98,6 +98,7 @@ object RecipeSearch {
                     }
                 }
             }
+
             if (ingredientCount == i.ingredients.size) {
                 foundRecipes.add(i.name)
 
