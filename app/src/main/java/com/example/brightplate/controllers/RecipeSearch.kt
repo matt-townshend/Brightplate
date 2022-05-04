@@ -78,7 +78,7 @@ object RecipeSearch {
         return finalRecipes
     }
 
-    fun searchRecipe(recipeList: ArrayList<RecipeFind>, userIngredientList: ArrayList<Ingredient>, ingredientFilter: String) : ArrayList<String>{
+    private fun searchRecipe(recipeList: ArrayList<RecipeFind>, userIngredientList: ArrayList<Ingredient>, ingredientFilter: String) : ArrayList<String>{
         var ingredientCount: Int
         var foundRecipes: ArrayList<String> = arrayListOf()
         val ingredientFilter: String = ingredientFilter
