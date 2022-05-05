@@ -4,8 +4,6 @@ import com.example.brightplate.models.Ingredient
 import com.example.brightplate.models.RecipeFind
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import java.util.concurrent.CountDownLatch
-
 
 object RecipeSearch {
 
@@ -42,9 +40,6 @@ object RecipeSearch {
             }
 
         })
-
-
-
 
         var recipeList: ArrayList<RecipeFind> = arrayListOf()
 
