@@ -3,8 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/matth/AndroidStudioProjects/Brightplate3/app/src/main/res/layout/activity_chosen_recipe.xml" value="0.30978260869565216" />
-        <entry key="app/src/main/res/layout/activity_recipe_search.xml" value="0.1890625" />
+        <entry key="..\:/Users/matth/AndroidStudioProjects/Brightplate/app/src/main/res/layout/activity_main.xml" value="0.31145833333333334" />
+        <entry key="app/src/main/res/layout/activity_chosen_recipe.xml" value="0.1874508580417498" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1743659420289855" />
       </map>
     </option>
   </component>
