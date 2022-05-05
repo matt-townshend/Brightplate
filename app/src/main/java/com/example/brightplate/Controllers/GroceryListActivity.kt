@@ -6,6 +6,10 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
+import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.brightplate.Adapter.GrocerylistAdapter
+import com.example.brightplate.Models.Ingredient
 import com.example.brightplate.R
 import com.example.brightplate.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -15,9 +19,9 @@ import com.google.firebase.database.FirebaseDatabase
 
 
 class GroceryListActivity : AppCompatActivity() {
-    private lateinit var itemName: String
-    private lateinit var itemUnit: String
-    private lateinit var itemQuaitiy: String
+    private lateinit var itemName: TextView
+    private lateinit var itemUnit: TextView
+    private lateinit var itemQuaitiy: TextView
 
     var currentuser = FirebaseAuth.getInstance().currentUser!!.uid
 
@@ -30,11 +34,32 @@ class GroceryListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_grocerylist);
 
-        val AddButton: Button = findViewById(R.id.AddItemToList)
+        database = FirebaseDatabase.getInstance().getReference(this.Databasegocerylist)
+        val shoppinglist = GenerateList(500)
 
+        recyclerView.adapter= GrocerylistAdapter(shoppinglist)
+        recyclerView.layoutManager = LinearLayoutManager(this)w
+        recyclerView.setHasFixedSize(true)
+
+        val AddButton: Button = findViewById(R.id.AddItemToList)
         AddButton.setOnClickListener{
             val additem = Intent(this@GroceryListActivity, GroceryListAdd::class.java)
             startActivity(additem)
         }
     }
+    private fun GetDatafromDatabase(){
+
+
+    }
+    private fun GenerateList(Size: Int):List<Ingredient>{
+        val list = arrayListOf<Ingredient>()
+        for (i in 0 until Size){
+                val items= Ingredient("itemnames","itemsuni" )
+             list+= list
+            }
+        return list
+
+
+        }
 }
+

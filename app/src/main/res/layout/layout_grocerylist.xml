@@ -35,7 +35,8 @@
                 android:id="@+id/GoceryitemName"
                 android:layout_width="399dp"
                 android:layout_height="51dp"
-                android:text="GoceryitemName" />
+                android:text="GoceryitemName"
+                />
 
             <TextView
                 android:id="@+id/Goceryitemquantity"
