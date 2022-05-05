@@ -14,7 +14,7 @@
             android:exported="false" />
         <activity
             android:name=".Controllers.GroceryListActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".controllers.InventoryViewActivity"
             android:exported="false" />

@@ -36,7 +36,19 @@ class GroceryListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_grocerylist);
 
         database = FirebaseDatabase.getInstance().getReference(this.Databasegocerylist)
-        val shoppinglist = GenerateList(500)
+        //val shoppinglist = GenerateList(100)
+        val shoppinglist = ArrayList<Ingredient>()
+        shoppinglist.add(Ingredient("chicken","grams",5.0))
+        shoppinglist.add(Ingredient("chicken","grams",5.0))
+        shoppinglist.add(Ingredient("chicken","grams",5.0))
+        shoppinglist.add(Ingredient("chicken","grams",5.0))
+        shoppinglist.add(Ingredient("chicken","grams",5.0))
+        shoppinglist.add(Ingredient("chicken","grams",5.0))
+        shoppinglist.add(Ingredient("chicken","grams",5.0))
+        shoppinglist.add(Ingredient("chicken","grams",5.0))
+
+
+
         val RecyclerView=findViewById(R.id.recyclerView) as RecyclerView
 
         RecyclerView.adapter= GrocerylistAdapter(shoppinglist)
@@ -49,7 +61,19 @@ class GroceryListActivity : AppCompatActivity() {
             startActivity(additem)
         }
     }
-    private fun GetDatafromDatabase(){
+    private fun GetDatafromDatabase(Size: Int,ingName: String, ingAmount: Double, ingUnitType: String{
+
+        val datalist= ArrayList<Ingredient>()
+        for(i in 0 until Size){
+            val ingredient = Ingredient(ingName, ingUnitType, ingAmount)
+            var Databasegocerylist: String = "GroceryList"
+            var currentuser = FirebaseAuth.getInstance().currentUser!!.uid
+            var itemtype = FirebaseDatabase.getInstance().getReference(this.Databasegocerylist).child(currentuser).child(currentuser).child(ingName).get()
+            var ItemNameSave: String
+            var ItemQuaitiySave: Double =FirebaseAuth.getInstance().currentUser.
+        }
+
+
 
 
     }

@@ -38,5 +38,3 @@ class GrocerylistAdapter (private val itemlist: List<Ingredient> ) : RecyclerVie
 
 }
 
-
-}
