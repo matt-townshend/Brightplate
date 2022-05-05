@@ -1,4 +1,4 @@
-package com.example.brightplate.main
+package com.example.brightplate.controllers
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,18 +6,18 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.brightplate.R
-import com.example.brightplate.models.Recipe
 
 class RecyclerAdapter(private val recipeList: ArrayList<String>,
-private val onRecipeClickListener: OnRecipeItemClickListener): RecyclerView.Adapter<RecyclerAdapter.ViewHolder>(){
+private val onRecipeClickListener: OnRecipeItemClickListener
+): RecyclerView.Adapter<RecyclerAdapter.ViewHolder>(){
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.activity_choserecipe_customlayout, parent, false)
         return ViewHolder(v, onRecipeClickListener)
     }
 
-    override fun onBindViewHolder(holder: RecyclerAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var currentItem = recipeList[position]
 
         holder.recipeName.text = currentItem
