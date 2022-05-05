@@ -4,6 +4,8 @@ import com.example.brightplate.models.Ingredient
 import com.example.brightplate.models.RecipeFind
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import java.util.concurrent.CountDownLatch
+
 
 object RecipeSearch {
 
@@ -12,7 +14,7 @@ object RecipeSearch {
     private lateinit var finalRecipes: ArrayList<String>
 
 
-    fun findAllRecipes(ingredientFilter: String) : ArrayList<String> {
+    fun findAllRecipes(ingredientFilter: String, myCallback:RecipeListCallback) {
         var userIngredientList: ArrayList<Ingredient> = arrayListOf()
         finalRecipes = arrayListOf()
         auth = FirebaseAuth.getInstance()
@@ -43,12 +45,12 @@ object RecipeSearch {
 
 
 
+
         var recipeList: ArrayList<RecipeFind> = arrayListOf()
 
         db = FirebaseDatabase.getInstance().getReference("Recipes")
         db.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
 
                     for (recipeSnapshot in snapshot.children) {
                         var tempIngredientList: ArrayList<Ingredient> = arrayListOf()
@@ -64,47 +66,44 @@ object RecipeSearch {
 
                         }
 
+
                         recipeList.add(RecipeFind(recName,tempIngredientList))
 
                     }
 
-                   finalRecipes = searchRecipe(recipeList, userIngredientList, ingredientFilter)
-                }
+                    var ingredientCount: Int
+                    var foundRecipes: ArrayList<String> = arrayListOf()
+                    val ingredientFilter: String = ingredientFilter
+
+                    for (i: RecipeFind in recipeList) {
+                        ingredientCount = 0
+                        for (j in i.ingredients) {
+                            if(ingredientFilter.isNotEmpty() && ingredientFilter.lowercase().contains(j.ingName.lowercase())) {
+                                break
+                            }
+                            for (k: Ingredient in userIngredientList) {
+
+                                if (j.ingName.lowercase() == k.ingName.lowercase()
+                                    && j.ingUnit == k.ingUnit
+                                    && j.ingAmount <= k.ingAmount) {
+                                    ingredientCount++
+                                }
+                            }
+                        }
+
+                        if (ingredientCount == i.ingredients.size) {
+                            foundRecipes.add(i.name)
+                        }
+                    }
+                myCallback.onCallback(foundRecipes)
+
             }
+
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
         })
-        return finalRecipes
-    }
 
-    private fun searchRecipe(recipeList: ArrayList<RecipeFind>, userIngredientList: ArrayList<Ingredient>, ingredientFilter: String) : ArrayList<String>{
-        var ingredientCount: Int
-        var foundRecipes: ArrayList<String> = arrayListOf()
-        val ingredientFilter: String = ingredientFilter
-
-        for (i: RecipeFind in recipeList) {
-            ingredientCount = 0
-            for (j in i.ingredients) {
-                if(ingredientFilter.isNotEmpty() && ingredientFilter.lowercase().contains(j.ingName.lowercase())) {
-                    break
-                }
-                for (k: Ingredient in userIngredientList) {
-
-                    if (j.ingName.lowercase() == k.ingName.lowercase()
-                        && j.ingUnit == k.ingUnit
-                        && j.ingAmount <= k.ingAmount) {
-                        ingredientCount++
-                    }
-                }
-            }
-
-            if (ingredientCount == i.ingredients.size) {
-                foundRecipes.add(i.name)
-            }
-        }
-
-        return foundRecipes
     }
 
 }

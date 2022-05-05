@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.brightplate.R
+import com.example.brightplate.controllers.RecipeListCallback
 import com.example.brightplate.controllers.RecipeSearch
 import com.example.brightplate.models.Recipe
 import com.google.firebase.database.*
@@ -26,13 +27,14 @@ class RecipeListActivity : AppCompatActivity(), RecyclerAdapter.OnRecipeItemClic
         recipeRecyclerView.layoutManager = LinearLayoutManager(this)
         recipeRecyclerView.setHasFixedSize(true)
 
-        recipeArrayList = arrayListOf<Recipe>()
-//        getRecipeData()
-        recipeList = RecipeSearch.findAllRecipes("")
-
-//        recipeList.add("Rice")
-//        recipeList.add("Noodles")
-        recipeRecyclerView.adapter = RecyclerAdapter(recipeList, this@RecipeListActivity)
+//        recipeArrayList = arrayListOf<Recipe>()
+        recipeList = arrayListOf()
+        RecipeSearch.findAllRecipes("",object: RecipeListCallback {
+            override fun onCallback(recipes:ArrayList<String>) {
+                recipeList = recipes
+                recipeRecyclerView.adapter = RecyclerAdapter(recipeList, this@RecipeListActivity)
+            }
+        })
     }
 
 //    private fun getRecipeData()
