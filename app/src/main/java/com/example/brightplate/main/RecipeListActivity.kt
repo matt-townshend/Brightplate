@@ -59,9 +59,11 @@ class RecipeListActivity : AppCompatActivity(), RecyclerAdapter.OnRecipeItemClic
 
 
     override fun onClick(position: Int) {
-        Toast.makeText(this, "${recipeArrayList[position].getRecipeName()}: Position $position clicked!", Toast.LENGTH_SHORT).show()
+
+        var recipe = recipeArrayList[position].getRecipeName()
+        Toast.makeText(this, "$recipe: Position $position clicked!", Toast.LENGTH_SHORT).show()
         val intent = Intent(this@RecipeListActivity, ChosenRecipe:: class.java)
-        intent.putExtra("Recipe", recipeArrayList[position].getRecipeName())
+        intent.putExtra("Recipe", recipe)
         startActivity(intent)
     }
 
