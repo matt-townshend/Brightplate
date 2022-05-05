@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Brightplate">
         <activity
+            android:name=".Controllers.GroceryListAdd"
+            android:exported="false" />
+        <activity
+            android:name=".Controllers.GroceryListActivity"
+            android:exported="false" />
+        <activity
             android:name=".controllers.InventoryViewActivity"
             android:exported="false" />
         <activity

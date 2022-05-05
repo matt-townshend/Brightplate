@@ -25,4 +25,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/homePageTextView" />
+
+    <Button
+        android:id="@+id/towardslist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="148dp"
+        android:layout_marginBottom="80dp"
+        android:text="shopping"
+        app:layout_constraintBottom_toTopOf="@+id/welcomeUserTextView"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

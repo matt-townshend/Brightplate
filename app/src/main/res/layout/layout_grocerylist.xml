@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="10dp"
+    app:cardCornerRadius="2dp"
+    app:cardPreventCornerOverlap="false"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <RelativeLayout
+            android:id="@+id/container1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"><![CDATA[
+
+            "
+            android:textColor="#000"
+            android:textSize="19sp" />
+
+            ]]>
+
+            <TextView
+                android:id="@+id/GoceryitemName"
+                android:layout_width="399dp"
+                android:layout_height="51dp"
+                android:text="GoceryitemName" />
+
+            <TextView
+                android:id="@+id/Goceryitemquantity"
+                android:layout_width="130dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/GoceryitemName"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="136dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="129dp"
+                android:text="Goceryitemquantity"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/GoceryUnit"
+                android:layout_width="130dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/GoceryitemName"
+                android:layout_marginTop="15dp"
+                android:text="GoceryitemUnit"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/GoceryDelete"
+                android:layout_width="56dp"
+                android:text="remove ITem"
+                android:layout_height="59dp"
+                android:layout_below="@+id/GoceryitemName"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="-70dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="14dp"
+                android:layout_toEndOf="@+id/GoceryitemName"
+
+                />
+
+
+        </RelativeLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>
