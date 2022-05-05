@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.brightplate.R
 import com.example.brightplate.models.Recipe
 
-class RecyclerAdapter(private val recipeList: ArrayList<Recipe>,
+class RecyclerAdapter(private val recipeList: ArrayList<String>,
 private val onRecipeClickListener: OnRecipeItemClickListener): RecyclerView.Adapter<RecyclerAdapter.ViewHolder>(){
 
 
@@ -20,7 +20,7 @@ private val onRecipeClickListener: OnRecipeItemClickListener): RecyclerView.Adap
     override fun onBindViewHolder(holder: RecyclerAdapter.ViewHolder, position: Int) {
         var currentItem = recipeList[position]
 
-        holder.recipeName.text = currentItem.getRecipeName()
+        holder.recipeName.text = currentItem
     }
 
     override fun getItemCount(): Int {

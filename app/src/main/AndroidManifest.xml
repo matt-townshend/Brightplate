@@ -11,7 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Brightplate">
         <activity
-            android:name=".main.RecipeSearchActivity"
+            android:name=".main.RecipeListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".main.ChosenRecipe"
             android:exported="true" />
         <activity
             android:name=".controllers.InventoryViewActivity"

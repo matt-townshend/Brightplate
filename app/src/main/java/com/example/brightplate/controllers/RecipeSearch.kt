@@ -86,7 +86,7 @@ object RecipeSearch {
         for (i: RecipeFind in recipeList) {
             ingredientCount = 0
             for (j in i.ingredients) {
-                if(ingredientFilter.lowercase().contains(j.ingName.lowercase())) {
+                if(ingredientFilter.isNotEmpty() && ingredientFilter.lowercase().contains(j.ingName.lowercase())) {
                     break
                 }
                 for (k: Ingredient in userIngredientList) {

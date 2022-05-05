@@ -49,6 +49,10 @@ class ChosenRecipe : AppCompatActivity()
                 val prepTime = it.child(prepTime).value.toString()
                 binding.textViewPrepTime.text = prepTime
 
+                for(ingredient in  it.child("Ingredients").children) {
+                    binding.textViewIngredients.append(ingredient.key.toString()+" "+ingredient.child("ingAmount").value.toString()+ingredient.child("ingUnit").value.toString()+", ")
+                }
+
             }
             else
             {

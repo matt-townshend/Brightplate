@@ -87,7 +87,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_description_title" />
@@ -112,7 +111,6 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:singleLine="false"
-        android:text="TextView"
         app:barrierAllowsGoneWidgets="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -124,7 +122,6 @@
         android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="TextView"
         app:layout_constrainedWidth="true"
         app:layout_constraintStart_toEndOf="@+id/textView_caloriesTitle"
         app:layout_constraintTop_toTopOf="@+id/textView_caloriesTitle" />
@@ -134,7 +131,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/textView_prepTime_title"
         app:layout_constraintTop_toTopOf="@+id/textView_prepTime_title" />
 
@@ -143,7 +139,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/textView_cookTime_title"
         app:layout_constraintTop_toTopOf="@+id/textView_cookTime_title" />
 
@@ -165,7 +160,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView_IngredientsTitle"
         app:layout_constraintTop_toBottomOf="@+id/textView_IngredientsTitle" />
