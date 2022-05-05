@@ -8,74 +8,166 @@
     tools:context=".main.ChosenRecipe">
 
     <TextView
-        android:id="@+id/recipe_name"
+        android:id="@+id/textView_recipeMainTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:backgroundTint="#8D9C27B0"
         android:text="Dish Name"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageView_recipePic"
         android:layout_width="177dp"
         android:layout_height="192dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recipe_name"
+        app:layout_constraintTop_toBottomOf="@+id/textView_recipeMainTitle"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/cook_time"
+        android:id="@+id/textView_cookTime_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="Cook TIme:"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        android:text="Cook Time:"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/imageView_recipePic"
+        app:layout_constraintTop_toTopOf="@+id/imageView_recipePic" />
 
     <TextView
-        android:id="@+id/calories_recipe"
+        android:id="@+id/textView_caloriesTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="52dp"
         android:text="Calories:"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintStart_toEndOf="@+id/imageView" />
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_recipePic"
+        app:layout_constraintStart_toEndOf="@+id/imageView_recipePic" />
 
     <TextView
-        android:id="@+id/prep_time"
+        android:id="@+id/textView_prepTime_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Preperation TIme:"
-        app:layout_constraintBottom_toTopOf="@+id/calories_recipe"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/cook_time" />
+        android:text="Preperation Time:"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/textView_caloriesTitle"
+        app:layout_constraintStart_toEndOf="@+id/imageView_recipePic"
+        app:layout_constraintTop_toBottomOf="@+id/textView_cookTime_title"
+        app:layout_constraintVertical_bias="0.474" />
 
     <TextView
         android:id="@+id/textView_description_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="192dp"
         android:text="Description"
+        android:textStyle="bold"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView_recipePic" />
 
     <TextView
         android:id="@+id/textView_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_description_title" />
+
+    <TextView
+        android:id="@+id/textView_equipment_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:text="Equipment:"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_recipePic"
+        app:layout_constraintStart_toEndOf="@+id/imageView_recipePic" />
+
+    <TextView
+        android:id="@+id/textView_equipment"
+        android:layout_width="194dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:singleLine="false"
         android:text="TextView"
+        app:barrierAllowsGoneWidgets="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/textView_equipment_title"
+        app:layout_constraintTop_toBottomOf="@+id/textView_equipment_title" />
+
+    <TextView
+        android:id="@+id/textView_calories"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="TextView"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintStart_toEndOf="@+id/textView_caloriesTitle"
+        app:layout_constraintTop_toTopOf="@+id/textView_caloriesTitle" />
+
+    <TextView
+        android:id="@+id/textView_prepTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/textView_prepTime_title"
+        app:layout_constraintTop_toTopOf="@+id/textView_prepTime_title" />
+
+    <TextView
+        android:id="@+id/textView_cookTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/textView_cookTime_title"
+        app:layout_constraintTop_toTopOf="@+id/textView_cookTime_title" />
+
+    <TextView
+        android:id="@+id/textView_IngredientsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Ingredients:"
+        android:textStyle="bold"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_description_title" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_equipment" />
+
+    <TextView
+        android:id="@+id/textView_Ingredients"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView_IngredientsTitle"
+        app:layout_constraintTop_toBottomOf="@+id/textView_IngredientsTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
