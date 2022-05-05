@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.brightplate.Adapter.GrocerylistAdapter
 import com.example.brightplate.Models.Ingredient
 import com.example.brightplate.R
@@ -36,10 +37,11 @@ class GroceryListActivity : AppCompatActivity() {
 
         database = FirebaseDatabase.getInstance().getReference(this.Databasegocerylist)
         val shoppinglist = GenerateList(500)
+        val RecyclerView=findViewById(R.id.recyclerView) as RecyclerView
 
-        recyclerView.adapter= GrocerylistAdapter(shoppinglist)
-        recyclerView.layoutManager = LinearLayoutManager(this)w
-        recyclerView.setHasFixedSize(true)
+        RecyclerView.adapter= GrocerylistAdapter(shoppinglist)
+        RecyclerView.layoutManager = LinearLayoutManager(this)
+        RecyclerView.setHasFixedSize(true)
 
         val AddButton: Button = findViewById(R.id.AddItemToList)
         AddButton.setOnClickListener{
