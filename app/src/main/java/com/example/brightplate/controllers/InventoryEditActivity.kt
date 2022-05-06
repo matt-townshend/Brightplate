@@ -1,9 +1,8 @@
 package com.example.brightplate.controllers
 
 /**
- * @author Ajit Singh
  * User Edit Inventory
- * Performs add and remove ingredient operations
+ * Performs add and remove ingredient operations for the user inventory
  */
 
 import android.os.Bundle

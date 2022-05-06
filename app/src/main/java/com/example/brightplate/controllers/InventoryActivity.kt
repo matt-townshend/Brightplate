@@ -1,7 +1,6 @@
 package com.example.brightplate.controllers
 
 /**
- * @author Ajit Singh
  * Main Inventory Activity
  */
 import android.content.Intent

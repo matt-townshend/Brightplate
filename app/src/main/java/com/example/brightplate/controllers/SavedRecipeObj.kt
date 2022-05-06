@@ -4,11 +4,21 @@ import com.example.brightplate.models.Ingredient
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
+/**
+ * Save Recipe Object
+ * Used to implement save recipe operations
+ */
 object SavedRecipeObj {
     private lateinit var dbRef: DatabaseReference
     private lateinit var auth: FirebaseAuth
     private lateinit var recipeSavedList: ArrayList<String>
 
+
+    /**
+     * @param callback
+     * this method gets the name of the recipes saved for the users and store that
+     * recipe name into the recipeSavedList arraylist
+     */
     fun getSavedRecipes(callback: RecipeListCallback) {
         auth = FirebaseAuth.getInstance()
         val userID = auth.uid.toString()
@@ -16,10 +26,10 @@ object SavedRecipeObj {
         recipeSavedList = arrayListOf()
 
         dbRef = FirebaseDatabase.getInstance().getReference("users/$userID/SavedRecipes")
-        dbRef.addValueEventListener(object: ValueEventListener {
+        dbRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
-                    for(savedRecipes in snapshot.children){
+                    for (savedRecipes in snapshot.children) {
                         val recipeName = savedRecipes.key.toString()
                         recipeSavedList.add(recipeName)
                     }
@@ -27,6 +37,7 @@ object SavedRecipeObj {
                 }
 
             }
+
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
@@ -34,18 +45,18 @@ object SavedRecipeObj {
         })
 
 
-
     }
 
-    fun saveRecipe(
-        recipeName: String
-    ){
+    /**
+     * @param recipeName
+     * the method gets the user id and reference to the "SavedRecipes" table from firebase
+     * and saves the title of the recipe to that table
+     */
+    fun saveRecipe(recipeName: String) {
         auth = FirebaseAuth.getInstance()
         val userID = auth.uid.toString()
-        // Users -> UserID -> SavedRecipe -> ...
-        dbRef = FirebaseDatabase.getInstance().getReference("users/$userID/SavedRecipes/$recipeName")
-        // saving the object to the firebase database
-        // path: Users -> UserID -> SavedRecipes
+        dbRef = FirebaseDatabase.getInstance()
+            .getReference("users/$userID/SavedRecipes/$recipeName")
         dbRef.child("Recipe Name").setValue(recipeName)
     }
 }

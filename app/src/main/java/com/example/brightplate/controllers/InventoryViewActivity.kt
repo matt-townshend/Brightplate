@@ -1,7 +1,6 @@
 package com.example.brightplate.controllers
 
 /**
- * @author Ajit Singh
  * Edit Inventory Activity
  */
 import androidx.appcompat.app.AppCompatActivity

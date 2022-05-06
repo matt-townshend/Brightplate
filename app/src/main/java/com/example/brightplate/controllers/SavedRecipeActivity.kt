@@ -9,6 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.brightplate.R
 import com.example.brightplate.main.ChosenRecipe
 
+/**
+ * Activity which is used to display the saved recipes from the user's saved recipe table
+ * from firebase
+ */
 class SavedRecipeActivity : AppCompatActivity(), RecyclerAdapter.OnRecipeItemClickListener {
     private lateinit var recipeRecyclerView: RecyclerView
     private lateinit var recipeSavedList: ArrayList<String>

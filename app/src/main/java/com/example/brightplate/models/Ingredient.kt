@@ -1,7 +1,6 @@
 package com.example.brightplate.models
 
 /**
- * @author Ajit Singh
  * Data Class For Ingredients
  */
 data class Ingredient(
