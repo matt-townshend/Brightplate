@@ -28,11 +28,14 @@ class RecipeListActivity : AppCompatActivity(), RecyclerAdapter.OnRecipeItemClic
 
 //        recipeArrayList = arrayListOf<Recipe>()
         recipeList = arrayListOf()
+
+        // takes ingredient filter provided by user and assigns as value
         val filter = intent.getStringExtra("filter")
+        // calls the findAllRecipes function and creates a RecipeListCallback object that will be initialized once the database data is retrieved
         RecipeSearch.findAllRecipes(filter.toString(),object: RecipeListCallback {
             override fun onCallback(recipes:ArrayList<String>) {
-                recipeList = recipes
-                recipeRecyclerView.adapter = RecyclerAdapter(recipes, this@RecipeListActivity)
+                recipeList = recipes // assigns recipes returned by function as a list to be used
+                recipeRecyclerView.adapter = RecyclerAdapter(recipes, this@RecipeListActivity) // recycle viewer is generated with the relevant recipes
             }
         })
     }
