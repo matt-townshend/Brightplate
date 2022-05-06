@@ -45,6 +45,8 @@ class UserSignup : AppCompatActivity() {
                             .getReference("users/" + auth.uid.toString())
                         database.child("username").setValue(username)
 
+                        val goToHomePage = Intent(this, ActivityMainHomePage::class.java)
+                        startActivity(goToHomePage)
 
 
                     }
