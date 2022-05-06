@@ -11,6 +11,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Brightplate">
         <activity
+            android:name=".controllers.ChosenSavedRecipeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".controllers.SavedRecipeActivity"
+            android:exported="false" />
+        <activity
             android:name=".main.RecipeListActivity"
             android:exported="true" />
         <activity

@@ -2,6 +2,7 @@ package com.example.brightplate.models
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.database.DatabaseReference
 
 
 class SavedRecipes {
@@ -9,14 +10,8 @@ class SavedRecipes {
     private var dbInnerPath: String = "SavedRecipes"
     private var dbOuterPath: String = "users"
 
-
     private lateinit var userId: String
     private lateinit var auth: FirebaseAuth
-
-    constructor(recipePath: DatabaseReference, savedRecipePath: DatabaseReference) {
-        this.copyRecipe(recipePath, savedRecipePath)
-    }
-
 
     constructor(
         recipeName: String, recipeDescription: String, recipeEquipment: String,
@@ -26,6 +21,10 @@ class SavedRecipes {
             recipeName, recipeDescription, recipeEquipment,
             recipeCookTime, recipePrepTime
         )
+    }
+
+    constructor(name: String, unit: String, amount: String, recipeName : String) {
+        this.saveRecipeIngredients(name, unit, amount, recipeName)
     }
 
     /**
@@ -38,15 +37,18 @@ class SavedRecipes {
         return userId
     }
 
+    // method one (1)
     // has the prams value pushed to the saved recipes database
     fun saveRecipe(
         recipeName: String, recipeDescription: String, recipeEquipment: String,
         recipeCookTime: String, recipePrepTime: String,
     ): Boolean {
         var isSaved = false
-        // UserID -> User -> SavedRecipe -> ...
+        // Users -> UserID -> SavedRecipe -> ...
         dbRef = FirebaseDatabase.getInstance().getReference(this.dbOuterPath)
         var path = dbRef.child(getUserId()).child(this.dbInnerPath)
+
+        // savedRecipeData Object
         val recipeDate = SavedRecipeData(
             recipeName,
             recipeDescription,
@@ -54,31 +56,24 @@ class SavedRecipes {
             recipeCookTime,
             recipePrepTime
         )
+        // saving the object to the firebase databse
+        // path: Users -> UserID -> SavedRecipes
         path.child(recipeName).setValue(recipeDate).addOnSuccessListener {
             isSaved = true
         }.addOnFailureListener {
             isSaved = false
         }
-
         return isSaved
     }
 
+    fun saveRecipeIngredients(ingName: String, ingUnit: String, ingAmount: String, recipeName: String) {
+        var isIngredientsSaved = false
+        var dbRef: DatabaseReference = FirebaseDatabase.getInstance().getReference("users")
+        var srPath = dbRef.child(getUserId()).child("SavedRecipes").child(recipeName)
 
-    private fun copyRecipe(fromPath: DatabaseReference, toPath: DatabaseReference): Boolean {
-        var isCopied = false
-        val valueEventListener: ValueEventListener = object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                toPath.setValue(dataSnapshot.value).addOnCompleteListener { task ->
-                    isCopied = task.isComplete
-                }
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {}
-        }
-        fromPath.addListenerForSingleValueEvent(valueEventListener)
-
-        return isCopied
+        var ingredient = Ingredient(ingName, ingUnit, ingAmount.toDouble())
+        srPath.child("Ingredients").child(ingName).setValue(ingredient)
+            .addOnSuccessListener { isIngredientsSaved = true }
     }
-
 }
 

@@ -53,13 +53,13 @@ class ChosenRecipe : AppCompatActivity() {
                 binding.textViewPrepTime.text = prepTime
 
                 for (ingredient in it.child("Ingredients").children) {
+
                     binding.textViewIngredients.append(
                         ingredient.key.toString() + " " + ingredient.child(
                             "ingAmount"
                         ).value.toString() + ingredient.child("ingUnit").value.toString() + ", "
                     )
                 }
-
             } else {
                 Toast.makeText(
                     this,
@@ -68,20 +68,10 @@ class ChosenRecipe : AppCompatActivity() {
                 ).show()
             }
         }.addOnFailureListener {
-
             Toast.makeText(this, "Failed to read data", Toast.LENGTH_SHORT).show()
         }
 
         binding.saveRecipeBtn.setOnClickListener {
-            auth = FirebaseAuth.getInstance()
-            recipesPath = FirebaseDatabase.getInstance().getReference(recipes)
-            savedRecipesPath =
-                FirebaseDatabase.getInstance().getReference("user")
-                    .child(auth.uid.toString())
-                    .child("Saved Recipes")
-
-            var SavedRecipes = SavedRecipes(recipesPath, savedRecipesPath)
-
             database.child(selectedRecipe.toString()).get().addOnSuccessListener {
                 if (it.exists()) {
                     val recipeName = it.child("RecipeName").value.toString()
@@ -89,7 +79,6 @@ class ChosenRecipe : AppCompatActivity() {
                     val recipeEquip = it.child(equipment).value.toString()
                     val recipeCookTime = it.child(cookTime).value.toString()
                     val recipePrepTime = it.child(prepTime).value.toString()
-                    val recipeIngredients = it.child("Ingredients")
                     var saveRecipe = SavedRecipes(
                         recipeName,
                         recipeDesc,
@@ -97,8 +86,27 @@ class ChosenRecipe : AppCompatActivity() {
                         recipeCookTime,
                         recipePrepTime
                     )
+
+                    for (recipeIngredients in it.child("Ingredients").children) {
+                        val ingName =
+                            recipeIngredients.child("ingName").getValue().toString()
+                        val ingUnit =
+                            recipeIngredients.child("ingUnit").getValue().toString()
+                        val ingAmount =
+                            recipeIngredients.child("ingAmount").getValue().toString()
+
+                        var savedRecipe = SavedRecipes(ingName, ingUnit, ingAmount, recipeName)
+                    }
+
+
+                    Toast.makeText(
+                        applicationContext,
+                        "Recipe Saved Successfully",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
+            /********************************************************************************/
         }
     }
 }
