@@ -13,9 +13,7 @@ import com.example.brightplate.controllers.RecyclerAdapter
 
 class RecipeListActivity : AppCompatActivity(), RecyclerAdapter.OnRecipeItemClickListener{
 
-    //  private lateinit var dbref: DatabaseReference
     private lateinit var recipeRecyclerView: RecyclerView
-    //private lateinit var recipeArrayList: ArrayList<Recipe>
     private lateinit var recipeList: ArrayList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +24,6 @@ class RecipeListActivity : AppCompatActivity(), RecyclerAdapter.OnRecipeItemClic
         recipeRecyclerView.layoutManager = LinearLayoutManager(this)
         recipeRecyclerView.setHasFixedSize(true)
 
-//        recipeArrayList = arrayListOf<Recipe>()
         recipeList = arrayListOf()
 
         // takes ingredient filter provided by user and assigns as value
@@ -40,6 +37,8 @@ class RecipeListActivity : AppCompatActivity(), RecyclerAdapter.OnRecipeItemClic
         })
     }
 
+/*Code that might be of use late -- Will be removed after further development if not needed*/
+/*-----------------------------------------------------------------------------------------*/
 //    private fun getRecipeData()
 //    {
 //        dbref = FirebaseDatabase.getInstance().getReference("Recipes")

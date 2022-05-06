@@ -12,7 +12,7 @@ import com.google.firebase.database.*
 
 class AllRecipeListActivity : AppCompatActivity(), RecyclerAdapter.OnRecipeItemClickListener{
 
-    private lateinit var dbref: DatabaseReference
+    private lateinit var dbref: DatabaseReference //reference to database
     private lateinit var recipeRecyclerView: RecyclerView
     private lateinit var recipeArrayList: ArrayList<String>
 
@@ -21,30 +21,33 @@ class AllRecipeListActivity : AppCompatActivity(), RecyclerAdapter.OnRecipeItemC
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recipe_list)
 
-        recipeRecyclerView = findViewById(R.id.recyclerView_recipeSelection)
+        recipeRecyclerView = findViewById(R.id.recyclerView_recipeSelection) //reference to the recycler
+        //view holding the recipes
         recipeRecyclerView.layoutManager = LinearLayoutManager(this)
         recipeRecyclerView.setHasFixedSize(true)
 
         recipeArrayList = arrayListOf()
-        getRecipeData()
+        getRecipeData() // calling the getRecipeData function
 
 
     }
 
     private fun getRecipeData()
     {
-        dbref = FirebaseDatabase.getInstance().getReference("Recipes")
+        dbref = FirebaseDatabase.getInstance().getReference("Recipes") //Database reference to
+        //the node "Recipes" so that its children can be accessed
         dbref.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists())
                 {
-                    for(recipeSnapshot in snapshot.children)
+                    for(recipeSnapshot in snapshot.children) //All the children of the "Recipes" node
                     {
                         val recipe = recipeSnapshot.key.toString()
                         recipeArrayList.add(recipe)
 
                     }
                     recipeRecyclerView.adapter = RecyclerAdapter(recipeArrayList, this@AllRecipeListActivity)
+                    //Initialising the recycler view adapter
                 }
 
             }

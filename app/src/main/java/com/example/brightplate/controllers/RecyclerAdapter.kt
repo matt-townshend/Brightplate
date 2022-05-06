@@ -23,10 +23,14 @@ private val onRecipeClickListener: OnRecipeItemClickListener
         holder.recipeName.text = currentItem
     }
 
+    //returns the number of recipes
     override fun getItemCount(): Int {
         return recipeList.size
     }
 
+
+    //Inner class which initialises recipe name and recipe index so that the position and the name of
+    //recipe in the recycler view can be obtained
     inner class ViewHolder(itemView: View, OnItemClickListener: OnRecipeItemClickListener): RecyclerView.ViewHolder(itemView)
     {
         var recipeName: TextView
@@ -43,6 +47,8 @@ private val onRecipeClickListener: OnRecipeItemClickListener
     }
 
 
+    //Interface for the the Recycler View to override so that each item in the Recycler View
+    //can respond to a click
     interface OnRecipeItemClickListener
     {
         fun onClick(position: Int)

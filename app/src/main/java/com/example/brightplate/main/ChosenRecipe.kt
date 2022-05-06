@@ -37,28 +37,29 @@ class ChosenRecipe : AppCompatActivity()
             if(it.exists())
             {
                 val title = selectedRecipe.toString()
-                binding.textViewRecipeMainTitle.text = title
+                binding.textViewRecipeMainTitle.text = title //Setting main title of activity
 
                 val desc = it.child(description).value.toString()
-                binding.textViewDescription.text = desc
+                binding.textViewDescription.text = desc //Accessing description and setting it
                 Toast.makeText(this, "Successfully read description", Toast.LENGTH_SHORT).show()
+                //Making a toast for conformation that the description of the recipe has been accessed
 
                 val equip = it.child(equipment).value.toString()
-                binding.textViewEquipment.text = equip
+                binding.textViewEquipment.text = equip //Setting equipment text to that in the DB
 
                 val cookTime = it.child(cookTime).value.toString()
-                binding.textViewCookTime.text =  cookTime
+                binding.textViewCookTime.text =  cookTime //Setting cooktime to that in the DB
 
                 val prepTime = it.child(prepTime).value.toString()
-                binding.textViewPrepTime.text = prepTime
+                binding.textViewPrepTime.text = prepTime //Setting preptime to that in the DB
 
                 val imageURL = it.child(imageURL).value.toString()
-                Picasso.get().load(imageURL).into(binding.imageViewRecipePic)
+                Picasso.get().load(imageURL).into(binding.imageViewRecipePic) //Image for the Recipe
 
                 for(ingredient in  it.child("Ingredients").children) {
                     binding.textViewIngredients.append(ingredient.key.toString()+" "+ingredient.child("ingAmount").value.toString()+ingredient.child("ingUnit").value.toString()+", ")
                 }
-
+                //Getting the ingredient amount for all the ingredients
             }
             else
             {
