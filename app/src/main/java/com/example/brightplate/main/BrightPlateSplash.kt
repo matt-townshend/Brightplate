@@ -21,6 +21,8 @@ class BrightPlateSplash : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         var currentUser = auth.currentUser
 
+        //button to go to the ActivityMainHomnePage activity and checks if the user is signed in, if
+        //the user is not signed in then the button will go to the UserSignin activity
         binding.buttonContinue.setOnClickListener()
         {
             if(currentUser != null){
