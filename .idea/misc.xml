@@ -4,8 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/matth/AndroidStudioProjects/Brightplate/app/src/main/res/layout/activity_main.xml" value="0.31145833333333334" />
-        <entry key="app/src/main/res/layout/activity_chosen_recipe.xml" value="0.1721014492753623" />
+        <entry key="app/src/main/res/layout/activity_chosen_recipe.xml" value="0.15070921985815602" />
+        <entry key="app/src/main/res/layout/activity_chosen_saved_recipe.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1743659420289855" />
+        <entry key="app/src/main/res/layout/activity_recipe_list.xml" value="0.15070921985815602" />
+        <entry key="app/src/main/res/layout/activity_saved_recipe.xml" value="0.1721014492753623" />
       </map>
     </option>
   </component>

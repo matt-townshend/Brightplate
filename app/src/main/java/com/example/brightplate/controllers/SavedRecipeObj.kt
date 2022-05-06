@@ -1,0 +1,38 @@
+package com.example.brightplate.controllers
+
+import com.example.brightplate.models.Ingredient
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
+
+object SavedRecipeObj {
+    private lateinit var dbRef: DatabaseReference
+    private var dbInnerPath: String = "SavedRecipes"
+    private var dbOuterPath: String = "users"
+    private lateinit var auth: FirebaseAuth
+    private lateinit var recipeSavedList: ArrayList<String>
+
+    fun getSavedRecipes(callback: RecipeListCallback) {
+        dbRef = FirebaseDatabase.getInstance().getReference(this.dbOuterPath)
+        var path = dbRef.child(auth.uid.toString()).child(this.dbInnerPath)
+
+        dbRef.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for(savedRecipes in snapshot.children){
+                        val recipeName = savedRecipes.key.toString()
+                        recipeSavedList.add(recipeName)
+                    }
+                    callback.onCallback(recipeSavedList)
+                }
+
+            }
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+
+
+    }
+}

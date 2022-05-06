@@ -12,8 +12,7 @@ import com.example.brightplate.models.Recipe
 
 class SavedRecipeActivity : AppCompatActivity(), RecyclerAdapter.OnRecipeItemClickListener {
     private lateinit var recipeRecyclerView: RecyclerView
-    private lateinit var recipeArrayList: ArrayList<Recipe>
-    private lateinit var recipeList: ArrayList<String>
+    private lateinit var recipeSavedList: ArrayList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,18 +22,18 @@ class SavedRecipeActivity : AppCompatActivity(), RecyclerAdapter.OnRecipeItemCli
         recipeRecyclerView.layoutManager = LinearLayoutManager(this)
         recipeRecyclerView.setHasFixedSize(true)
 
-        recipeList = arrayListOf()
-        RecipeSearch.findAllRecipes("", object : RecipeListCallback {
+        recipeSavedList = arrayListOf()
+        SavedRecipeObj.getSavedRecipes(object : RecipeListCallback {
             override fun onCallback(recipes: ArrayList<String>) {
-                recipeList = recipes
-                recipeRecyclerView.adapter = RecyclerAdapter(recipeList, this@SavedRecipeActivity)
+                recipeSavedList = recipes
+                recipeRecyclerView.adapter = RecyclerAdapter(recipeSavedList, this@SavedRecipeActivity)
             }
         })
     }
 
     override fun onClick(position: Int) {
 
-        var recipe = recipeList[position]
+        var recipe = recipeSavedList[position]
         Toast.makeText(this, "$recipe: Position $position clicked!", Toast.LENGTH_SHORT).show()
         val intent = Intent(this@SavedRecipeActivity, ChosenSavedRecipeActivity::class.java)
         intent.putExtra("Recipe", recipe)

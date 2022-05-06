@@ -13,18 +13,8 @@ class SavedRecipes {
     private lateinit var userId: String
     private lateinit var auth: FirebaseAuth
 
-    constructor(
-        recipeName: String, recipeDescription: String, recipeEquipment: String,
-        recipeCookTime: String, recipePrepTime: String
-    ) {
-        this.saveRecipe(
-            recipeName, recipeDescription, recipeEquipment,
-            recipeCookTime, recipePrepTime
-        )
-    }
-
-    constructor(name: String, unit: String, amount: String, recipeName : String) {
-        this.saveRecipeIngredients(name, unit, amount, recipeName)
+    constructor(recipeName: String) {
+        this.saveRecipe(recipeName)
     }
 
     /**
@@ -40,25 +30,16 @@ class SavedRecipes {
     // method one (1)
     // has the prams value pushed to the saved recipes database
     fun saveRecipe(
-        recipeName: String, recipeDescription: String, recipeEquipment: String,
-        recipeCookTime: String, recipePrepTime: String,
+        recipeName: String
     ): Boolean {
         var isSaved = false
         // Users -> UserID -> SavedRecipe -> ...
         dbRef = FirebaseDatabase.getInstance().getReference(this.dbOuterPath)
         var path = dbRef.child(getUserId()).child(this.dbInnerPath)
 
-        // savedRecipeData Object
-        val recipeDate = SavedRecipeData(
-            recipeName,
-            recipeDescription,
-            recipeEquipment,
-            recipeCookTime,
-            recipePrepTime
-        )
         // saving the object to the firebase databse
         // path: Users -> UserID -> SavedRecipes
-        path.child(recipeName).setValue(recipeDate).addOnSuccessListener {
+        path.child(recipeName).child("Recipe Name").setValue(recipeName).addOnSuccessListener {
             isSaved = true
         }.addOnFailureListener {
             isSaved = false
@@ -66,7 +47,12 @@ class SavedRecipes {
         return isSaved
     }
 
-    fun saveRecipeIngredients(ingName: String, ingUnit: String, ingAmount: String, recipeName: String) {
+    fun saveRecipeIngredients(
+        ingName: String,
+        ingUnit: String,
+        ingAmount: String,
+        recipeName: String
+    ) {
         var isIngredientsSaved = false
         var dbRef: DatabaseReference = FirebaseDatabase.getInstance().getReference("users")
         var srPath = dbRef.child(getUserId()).child("SavedRecipes").child(recipeName)

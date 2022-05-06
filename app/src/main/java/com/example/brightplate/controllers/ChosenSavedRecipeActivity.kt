@@ -11,6 +11,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 class ChosenSavedRecipeActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityChosenRecipeBinding
     private lateinit var database: DatabaseReference
     private val recipeSelected = "Recipe"
@@ -75,28 +76,24 @@ class ChosenSavedRecipeActivity : AppCompatActivity() {
             database.child(selectedRecipe.toString()).get().addOnSuccessListener {
                 if (it.exists()) {
                     val recipeName = it.child("RecipeName").value.toString()
-                    val recipeDesc = it.child("Description").value.toString()
-                    val recipeEquip = it.child(equipment).value.toString()
-                    val recipeCookTime = it.child(cookTime).value.toString()
-                    val recipePrepTime = it.child(prepTime).value.toString()
+//                    val recipeDesc = it.child("Description").value.toString()
+//                    val recipeEquip = it.child(equipment).value.toString()
+//                    val recipeCookTime = it.child(cookTime).value.toString()
+//                    val recipePrepTime = it.child(prepTime).value.toString()
                     var saveRecipe = SavedRecipes(
-                        recipeName,
-                        recipeDesc,
-                        recipeEquip,
-                        recipeCookTime,
-                        recipePrepTime
+                        recipeName
                     )
 
-                    for (recipeIngredients in it.child("Ingredients").children) {
-                        val ingName =
-                            recipeIngredients.child("ingName").getValue().toString()
-                        val ingUnit =
-                            recipeIngredients.child("ingUnit").getValue().toString()
-                        val ingAmount =
-                            recipeIngredients.child("ingAmount").getValue().toString()
-
-                        var savedRecipe = SavedRecipes(ingName, ingUnit, ingAmount, recipeName)
-                    }
+//                    for (recipeIngredients in it.child("Ingredients").children) {
+//                        val ingName =
+//                            recipeIngredients.child("ingName").getValue().toString()
+//                        val ingUnit =
+//                            recipeIngredients.child("ingUnit").getValue().toString()
+//                        val ingAmount =
+//                            recipeIngredients.child("ingAmount").getValue().toString()
+//
+//                        var savedRecipe = SavedRecipes(ingName, ingUnit, ingAmount, recipeName)
+//                    }
 
 
                     Toast.makeText(
