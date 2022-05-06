@@ -36,4 +36,16 @@ object SavedRecipeObj {
 
 
     }
+
+    fun saveRecipe(
+        recipeName: String
+    ){
+        auth = FirebaseAuth.getInstance()
+        val userID = auth.uid.toString()
+        // Users -> UserID -> SavedRecipe -> ...
+        dbRef = FirebaseDatabase.getInstance().getReference("users/$userID/SavedRecipes/$recipeName")
+        // saving the object to the firebase database
+        // path: Users -> UserID -> SavedRecipes
+        dbRef.child("Recipe Name").setValue(recipeName)
+    }
 }

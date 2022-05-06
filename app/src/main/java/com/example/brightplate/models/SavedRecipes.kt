@@ -13,9 +13,9 @@ class SavedRecipes {
     private lateinit var userId: String
     private lateinit var auth: FirebaseAuth
 
-    constructor(recipeName: String) {
-        this.saveRecipe(recipeName)
-    }
+//    constructor(recipeName: String) {
+//        this.saveRecipe(recipeName)
+//    }
 
     /**
      *
