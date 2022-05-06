@@ -6,15 +6,16 @@ import com.google.firebase.database.*
 
 object SavedRecipeObj {
     private lateinit var dbRef: DatabaseReference
-    private var dbInnerPath: String = "SavedRecipes"
-    private var dbOuterPath: String = "users"
     private lateinit var auth: FirebaseAuth
     private lateinit var recipeSavedList: ArrayList<String>
 
     fun getSavedRecipes(callback: RecipeListCallback) {
-        dbRef = FirebaseDatabase.getInstance().getReference(this.dbOuterPath)
-        var path = dbRef.child(auth.uid.toString()).child(this.dbInnerPath)
+        auth = FirebaseAuth.getInstance()
+        val userID = auth.uid.toString()
 
+        recipeSavedList = arrayListOf()
+
+        dbRef = FirebaseDatabase.getInstance().getReference("users/$userID/SavedRecipes")
         dbRef.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
