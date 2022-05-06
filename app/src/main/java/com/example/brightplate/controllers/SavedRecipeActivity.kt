@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.brightplate.R
 import com.example.brightplate.main.ChosenRecipe
-import com.example.brightplate.models.Recipe
 
 class SavedRecipeActivity : AppCompatActivity(), RecyclerAdapter.OnRecipeItemClickListener {
     private lateinit var recipeRecyclerView: RecyclerView

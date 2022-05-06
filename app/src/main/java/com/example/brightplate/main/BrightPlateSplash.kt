@@ -1,13 +1,10 @@
-package com.example.brightplate
+package com.example.brightplate.main
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.brightplate.databinding.ActivityBrightPlateSplashBinding
-import com.example.brightplate.main.ActivityMainHomePage
-import com.example.brightplate.main.UserSignin
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
 
 class BrightPlateSplash : AppCompatActivity() {
 
