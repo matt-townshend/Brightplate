@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.brightplate.Adapter.GrocerylistAdapter
+import com.example.brightplate.Controllers.GroceryListObject.deleteItemonList
 import com.example.brightplate.Models.Ingredient
 import com.example.brightplate.R
 import com.example.brightplate.databinding.ActivityMainBinding
@@ -49,6 +50,10 @@ class GroceryListActivity : AppCompatActivity() {
                 RecyclerView.adapter = GrocerylistAdapter(Datalist)
             }
         })
+        val deletebutton:Button=findViewById(R.id.GoceryDelete)
+        deletebutton.setOnClickListener {
+            deleteItemonList()
+        }
 
 
         val AddButton: Button = findViewById(R.id.AddItemToList)

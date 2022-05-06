@@ -36,4 +36,13 @@ object GroceryListObject {
             }
         })}
 
+    fun deleteItemonList( ingName:String){
+        auth = FirebaseAuth.getInstance()
+        database = FirebaseDatabase.getInstance().getReference(this.Databasegocerylist)
+        var datadelete=database.child(currentuser)
+        database.child("ingName").removeValue()
+
+
+    }
+
 }
