@@ -14,7 +14,7 @@ import com.example.brightplate.models.Recipe
 
 class RecipeListActivity : AppCompatActivity(), RecyclerAdapter.OnRecipeItemClickListener{
 
-  //  private lateinit var dbref: DatabaseReference
+    //  private lateinit var dbref: DatabaseReference
     private lateinit var recipeRecyclerView: RecyclerView
     private lateinit var recipeArrayList: ArrayList<Recipe>
     private lateinit var recipeList: ArrayList<String>
