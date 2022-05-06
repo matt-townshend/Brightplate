@@ -4,8 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,9 +12,7 @@ import com.example.brightplate.Models.Ingredient
 import com.example.brightplate.R
 import com.example.brightplate.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-
+import com.google.firebase.database.*
 
 
 class GroceryListActivity : AppCompatActivity() {
@@ -31,27 +27,17 @@ class GroceryListActivity : AppCompatActivity() {
     private lateinit var database : DatabaseReference
     private var Databasegocerylist: String = "GroceryList"
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_grocerylist);
 
-        database = FirebaseDatabase.getInstance().getReference(this.Databasegocerylist)
         //val shoppinglist = GenerateList(100)
-        val shoppinglist = ArrayList<Ingredient>()
-        shoppinglist.add(Ingredient("chicken","grams",5.0))
-        shoppinglist.add(Ingredient("chicken","grams",5.0))
-        shoppinglist.add(Ingredient("chicken","grams",5.0))
-        shoppinglist.add(Ingredient("chicken","grams",5.0))
-        shoppinglist.add(Ingredient("chicken","grams",5.0))
-        shoppinglist.add(Ingredient("chicken","grams",5.0))
-        shoppinglist.add(Ingredient("chicken","grams",5.0))
-        shoppinglist.add(Ingredient("chicken","grams",5.0))
-
-
+        //val createdlist = GetDatafromDatabase()
 
         val RecyclerView=findViewById(R.id.recyclerView) as RecyclerView
 
-        RecyclerView.adapter= GrocerylistAdapter(shoppinglist)
+        RecyclerView.adapter= GrocerylistAdapter()
         RecyclerView.layoutManager = LinearLayoutManager(this)
         RecyclerView.setHasFixedSize(true)
 
@@ -61,31 +47,33 @@ class GroceryListActivity : AppCompatActivity() {
             startActivity(additem)
         }
     }
-    private fun GetDatafromDatabase(Size: Int,ingName: String, ingAmount: Double, ingUnitType: String{
+   /* private fun GetDatafromDatabase(): ArrayList<Ingredient> {
+        var datalist= ArrayList<Ingredient>()
 
-        val datalist= ArrayList<Ingredient>()
-        for(i in 0 until Size){
-            val ingredient = Ingredient(ingName, ingUnitType, ingAmount)
-            var Databasegocerylist: String = "GroceryList"
-            var currentuser = FirebaseAuth.getInstance().currentUser!!.uid
-            var itemtype = FirebaseDatabase.getInstance().getReference(this.Databasegocerylist).child(currentuser).child(currentuser).child(ingName).get()
-            var ItemNameSave: String
-            var ItemQuaitiySave: Double =FirebaseAuth.getInstance().currentUser.
-        }
-
-
-
-
-    }
-    private fun GenerateList(Size: Int):List<Ingredient>{
-        val list = arrayListOf<Ingredient>()
-        for (i in 0 until Size){
-                val items= Ingredient("itemnames","itemsuni" )
-             list+= list
+        var currentuser = FirebaseAuth.getInstance().currentUser!!.uid
+        database = FirebaseDatabase.getInstance().getReference(this.Databasegocerylist)
+        var dataloction=database.child(currentuser)
+        dataloction.addValueEventListener(object: ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for(gocerylistSnapshot in snapshot.children) {
+                    val ingName = gocerylistSnapshot.child("ingName").getValue().toString()
+                    val ingAmount = gocerylistSnapshot.child("ingAmount").getValue().toString().toDouble()
+                    val ingUnit = gocerylistSnapshot.child("ingUnit").getValue().toString()
+                    datalist.add(Ingredient(ingName,ingUnit,ingAmount))
+                }
             }
-        return list
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+        return datalist
 
 
-        }
+
+    }*/
+
 }
+
+
 
