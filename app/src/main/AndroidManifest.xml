@@ -26,8 +26,8 @@
             android:name=".controllers.InventoryActivity"
             android:exported="true" />
         <activity
-            android:name=".main.MainActivity"
-            android:exported="false" />
+            android:name=".main.AllRecipeListActivity"
+            android:exported="true" />
         <activity
             android:name=".main.UserSignup"
             android:exported="true" />
