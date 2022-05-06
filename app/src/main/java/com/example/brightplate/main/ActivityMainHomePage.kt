@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.brightplate.controllers.InventoryEditActivity
+import com.example.brightplate.controllers.SavedRecipeActivity
 import com.example.brightplate.databinding.ActivityMainHomePageBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -38,6 +39,11 @@ class ActivityMainHomePage : AppCompatActivity() {
             auth.signOut()
             val goToUserSignIn = Intent(this, UserSignin::class.java)
             startActivity(goToUserSignIn)
+        }
+
+        binding.buttonSavedRecipes.setOnClickListener() {
+            val goToSavedRecipes = Intent(this, SavedRecipeActivity::class.java)
+            startActivity(goToSavedRecipes)
         }
 
         val dbRef = FirebaseDatabase.getInstance().getReference("users")
