@@ -32,7 +32,7 @@ class RecipeListActivity : AppCompatActivity(), RecyclerAdapter.OnRecipeItemClic
         RecipeSearch.findAllRecipes("",object: RecipeListCallback {
             override fun onCallback(recipes:ArrayList<String>) {
                 recipeList = recipes
-                recipeRecyclerView.adapter = RecyclerAdapter(recipeList, this@RecipeListActivity)
+                recipeRecyclerView.adapter = RecyclerAdapter(recipes, this@RecipeListActivity)
             }
         })
     }

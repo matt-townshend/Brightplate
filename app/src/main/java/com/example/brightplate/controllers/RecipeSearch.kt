@@ -18,7 +18,7 @@ object RecipeSearch {
         var userIngredientList: ArrayList<Ingredient> = arrayListOf()
         finalRecipes = arrayListOf()
         auth = FirebaseAuth.getInstance()
-
+        auth.signInWithEmailAndPassword("mrtownie66@gmail.com","townie1@")
         val userID: String = auth.uid.toString()
         db = FirebaseDatabase.getInstance().getReference("users/$userID/Inventory")
         db.addValueEventListener(object: ValueEventListener {
