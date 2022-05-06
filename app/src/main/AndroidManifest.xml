@@ -33,6 +33,8 @@
         <activity
             android:name=".main.RecipeListActivity"
             android:exported="true" />
+        <activity android:name=".controllers.SavedRecipeActivity"
+            android:exported="true" />
         <activity
             android:name=".main.ChosenRecipe"
             android:exported="true" />
