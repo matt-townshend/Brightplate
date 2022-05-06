@@ -1,11 +1,10 @@
 package com.example.brightplate.main
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.brightplate.databinding.ActivityMainHomePageBinding
-import com.example.brightplate.R
+import androidx.appcompat.app.AppCompatActivity
 import com.example.brightplate.controllers.InventoryEditActivity
+import com.example.brightplate.databinding.ActivityMainHomePageBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
