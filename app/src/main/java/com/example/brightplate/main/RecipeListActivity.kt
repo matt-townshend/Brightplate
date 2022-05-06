@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.brightplate.R
 import com.example.brightplate.controllers.RecipeListCallback
 import com.example.brightplate.controllers.RecipeSearch
+import com.example.brightplate.controllers.RecyclerAdapter
 import com.example.brightplate.models.Recipe
-import com.google.firebase.database.*
 
 class RecipeListActivity : AppCompatActivity(), RecyclerAdapter.OnRecipeItemClickListener{
 
