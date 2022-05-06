@@ -28,7 +28,8 @@ class RecipeListActivity : AppCompatActivity(), RecyclerAdapter.OnRecipeItemClic
 
 //        recipeArrayList = arrayListOf<Recipe>()
         recipeList = arrayListOf()
-        RecipeSearch.findAllRecipes("",object: RecipeListCallback {
+        val filter = intent.getStringExtra("filter")
+        RecipeSearch.findAllRecipes(filter.toString(),object: RecipeListCallback {
             override fun onCallback(recipes:ArrayList<String>) {
                 recipeList = recipes
                 recipeRecyclerView.adapter = RecyclerAdapter(recipes, this@RecipeListActivity)

@@ -32,6 +32,7 @@ class ActivityMainHomePage : AppCompatActivity() {
 
         binding.buttonSearchRecipes.setOnClickListener(){
             val goToSearchRecipe = Intent(this, RecipeListActivity::class.java)
+            goToSearchRecipe.putExtra("filter",binding.textFilter.text.toString())
             startActivity(goToSearchRecipe)
         }
 
