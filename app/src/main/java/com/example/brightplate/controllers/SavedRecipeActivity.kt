@@ -36,10 +36,9 @@ class SavedRecipeActivity : AppCompatActivity(), RecyclerAdapter.OnRecipeItemCli
     }
 
     override fun onClick(position: Int) {
-
         var recipe = recipeSavedList[position]
         Toast.makeText(this, "$recipe: Position $position clicked!", Toast.LENGTH_SHORT).show()
-        val intent = Intent(this@SavedRecipeActivity, ChosenRecipe::class.java)
+        val intent = Intent(this@SavedRecipeActivity, SavedChosenRecipeActivity::class.java)
         intent.putExtra("Recipe", recipe)
         startActivity(intent)
     }
