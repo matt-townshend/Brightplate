@@ -25,14 +25,13 @@ class ChosenRecipe : AppCompatActivity()
     private val cookTime = "Cook Time"
     private val prepTime = "Prep Time"
     private var imageURL = "Image"
+    private var savedRecipeName : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
         binding = ActivityChosenRecipeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        applyCheckBoxState()
 
         val selectedRecipe = intent.getStringExtra(recipeSelected)
         database = FirebaseDatabase.getInstance().getReference(recipes)
@@ -42,6 +41,7 @@ class ChosenRecipe : AppCompatActivity()
             {
                 val title = selectedRecipe.toString()
                 binding.textViewRecipeMainTitle.text = title //Setting main title of activity
+                applyCheckBoxState(title)
 
                 val desc = it.child(description).value.toString()
                 binding.textViewDescription.text = desc //Accessing description and setting it
@@ -74,15 +74,19 @@ class ChosenRecipe : AppCompatActivity()
             Toast.makeText(this, "Failed to read data", Toast.LENGTH_SHORT).show()
         }
 
-
+        /*
+        * checks the state of the favourite checkbox, if the checkbox is true, then the recipe is saved
+        * and if the checkbox is false then the recipe is removed from the saved recipe.
+        */
         binding.savedCheckbox.setOnCheckedChangeListener{ checkBox, isChecked ->
+
             if(isChecked){
                 SavedRecipeObj.saveRecipe(selectedRecipe.toString())
-//                saveCheckboxState(isChecked)
+                saveCheckboxState(isChecked)
                 Toast.makeText(this, "Recipe Saved", Toast.LENGTH_SHORT).show()
             } else if(!isChecked){
                 SavedRecipeObj.removeSavedRecipe(selectedRecipe.toString());
-//                saveCheckboxState(isChecked)
+                saveCheckboxState(isChecked)
                 Toast.makeText(this, "Saved Recipe Removed", Toast.LENGTH_SHORT).show()
             }
         }
@@ -93,14 +97,17 @@ class ChosenRecipe : AppCompatActivity()
         val editor = savedState.edit()
 
         editor.apply{
+            putString("saveRecipeName", binding.textViewRecipeMainTitle.text.toString())
             putBoolean("savedState", binding.savedCheckbox.isChecked)
         }.apply()
     }
 
-    private fun applyCheckBoxState(){
+    private fun applyCheckBoxState(ingredientName : String){
         val savedState : SharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
-        val checkboxState = savedState.getBoolean("savedState", false)
-
+        var checkboxState : Boolean = false
+        if (ingredientName == savedState.getString("saveRecipeName", null)) {
+            checkboxState = savedState.getBoolean("savedState", false)
+        }
         binding.savedCheckbox.isChecked = checkboxState
     }
 }

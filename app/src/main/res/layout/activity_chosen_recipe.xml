@@ -165,7 +165,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView_IngredientsTitle" />
 
     <CheckBox
-        android:id="@+id/saved_checkbox"
+        android:id="@+id/savedCheckbox"
         android:layout_width="45dp"
         android:layout_height="43dp"
         android:button="@drawable/selector_saved_item"
