@@ -1,6 +1,7 @@
 package com.example.brightplate.models
 
 import com.example.brightplate.controllers.RecipeListCallback
+import com.example.brightplate.controllers.SavedChosenRecipeActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 

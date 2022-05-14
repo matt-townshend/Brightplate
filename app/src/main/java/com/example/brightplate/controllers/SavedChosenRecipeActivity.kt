@@ -1,20 +1,16 @@
 package com.example.brightplate.controllers
 
-import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.brightplate.models.SavedRecipeObj
-import com.example.brightplate.databinding.ActivityChosenRecipeBinding
 import com.example.brightplate.databinding.ActivitySavedChosenRecipeBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.squareup.picasso.Picasso
 
 
-class SavedChosenRecipeActivity : AppCompatActivity()
-{
+class SavedChosenRecipeActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySavedChosenRecipeBinding
     private lateinit var database: DatabaseReference
     private val recipeSelected = "Recipe"
@@ -27,8 +23,7 @@ class SavedChosenRecipeActivity : AppCompatActivity()
     private val prepTime = "Prep Time"
     private var imageURL = "Image"
 
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySavedChosenRecipeBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -39,21 +34,18 @@ class SavedChosenRecipeActivity : AppCompatActivity()
         database = FirebaseDatabase.getInstance().getReference(recipes)
         database.child(selectedRecipe.toString()).get().addOnSuccessListener {
 
-            if(it.exists())
-            {
+            if (it.exists()) {
                 val title = selectedRecipe.toString()
                 binding.textViewRecipeMainTitle.text = title //Setting main title of activity
 
                 val desc = it.child(description).value.toString()
                 binding.textViewDescription.text = desc //Accessing description and setting it
-                Toast.makeText(this, "Successfully read description", Toast.LENGTH_SHORT).show()
-                //Making a toast for conformation that the description of the recipe has been accessed
 
                 val equip = it.child(equipment).value.toString()
                 binding.textViewEquipment.text = equip //Setting equipment text to that in the DB
 
                 val cookTime = it.child(cookTime).value.toString()
-                binding.textViewCookTime.text =  cookTime //Setting cooktime to that in the DB
+                binding.textViewCookTime.text = cookTime //Setting cooktime to that in the DB
 
                 val prepTime = it.child(prepTime).value.toString()
                 binding.textViewPrepTime.text = prepTime //Setting preptime to that in the DB
@@ -61,18 +53,23 @@ class SavedChosenRecipeActivity : AppCompatActivity()
                 val imageURL = it.child(imageURL).value.toString()
                 Picasso.get().load(imageURL).into(binding.imageViewRecipePic) //Image for the Recipe
 
-                for(ingredient in  it.child("Ingredients").children) {
-                    binding.textViewIngredients.append(ingredient.key.toString()+" "+ingredient.child("ingAmount").value.toString()+ingredient.child("ingUnit").value.toString()+", ")
+                for (ingredient in it.child("Ingredients").children) {
+                    binding.textViewIngredients.append(
+                        ingredient.key.toString() + " " + ingredient.child(
+                            "ingAmount"
+                        ).value.toString() + ingredient.child("ingUnit").value.toString() + ", "
+                    )
                 }
 
                 //Getting the ingredient amount for all the ingredients
+            } else {
+                Toast.makeText(
+                    this,
+                    "Description does not exist for this recipe",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
-            else
-            {
-                Toast.makeText(this, "Description does not exist for this recipe", Toast.LENGTH_SHORT).show()
-            }
-        }.addOnFailureListener{
-
+        }.addOnFailureListener {
             Toast.makeText(this, "Failed to read data", Toast.LENGTH_SHORT).show()
         }
 
@@ -80,36 +77,22 @@ class SavedChosenRecipeActivity : AppCompatActivity()
         * checks the state of the favourite checkbox, if the checkbox is true, then the recipe is saved
         * and if the checkbox is false then the recipe is removed from the saved recipe.
         */
-        binding.savedCheckbox.setOnCheckedChangeListener{ checkBox, isChecked ->
+        binding.savedCheckbox.setOnCheckedChangeListener { checkBox, isChecked ->
 
-            if(isChecked){
+            if (isChecked) {
                 SavedRecipeObj.saveRecipe(selectedRecipe.toString())
-                saveCheckboxState(isChecked)
                 Toast.makeText(this, "Recipe Saved", Toast.LENGTH_SHORT).show()
-            } else if(!isChecked){
+            } else if (!isChecked) {
                 SavedRecipeObj.removeSavedRecipe(selectedRecipe.toString());
-                saveCheckboxState(isChecked)
                 Toast.makeText(this, "Saved Recipe Removed", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    private fun saveCheckboxState(isChecked : Boolean) {
-        val savedState : SharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
-        val editor = savedState.edit()
-
-        editor.apply{
-            putString("saveRecipeName", binding.textViewRecipeMainTitle.text.toString())
-            putBoolean("savedState", binding.savedCheckbox.isChecked)
-        }.apply()
-    }
-
-    private fun applyCheckBoxState(){
-//        val savedState : SharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
-//        var checkboxState : Boolean = false
-//        if (ingredientName == savedState.getString("saveRecipeName", null)) {
-//            checkboxState = savedState.getBoolean("savedState", false)
-//        }
+    /**
+     * Sets the checkbox condition to true
+     */
+    private fun applyCheckBoxState() {
         binding.savedCheckbox.isChecked = true
     }
 }
