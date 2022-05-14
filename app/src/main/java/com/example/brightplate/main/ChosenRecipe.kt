@@ -1,5 +1,7 @@
 package com.example.brightplate.main
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -29,6 +31,8 @@ class ChosenRecipe : AppCompatActivity()
         super.onCreate(savedInstanceState)
         binding = ActivityChosenRecipeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        applyCheckBoxState()
 
         val selectedRecipe = intent.getStringExtra(recipeSelected)
         database = FirebaseDatabase.getInstance().getReference(recipes)
@@ -70,11 +74,33 @@ class ChosenRecipe : AppCompatActivity()
             Toast.makeText(this, "Failed to read data", Toast.LENGTH_SHORT).show()
         }
 
-        binding.saveRecipeBtn.setOnClickListener() {
-            SavedRecipeObj.saveRecipe(selectedRecipe.toString())
 
+        binding.savedCheckbox.setOnCheckedChangeListener{ checkBox, isChecked ->
+            if(isChecked){
+                SavedRecipeObj.saveRecipe(selectedRecipe.toString())
+//                saveCheckboxState(isChecked)
+                Toast.makeText(this, "Recipe Saved", Toast.LENGTH_SHORT).show()
+            } else if(!isChecked){
+                SavedRecipeObj.removeSavedRecipe(selectedRecipe.toString());
+//                saveCheckboxState(isChecked)
+                Toast.makeText(this, "Saved Recipe Removed", Toast.LENGTH_SHORT).show()
+            }
         }
+    }
 
+    private fun saveCheckboxState(isChecked : Boolean) {
+        val savedState : SharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+        val editor = savedState.edit()
 
+        editor.apply{
+            putBoolean("savedState", binding.savedCheckbox.isChecked)
+        }.apply()
+    }
+
+    private fun applyCheckBoxState(){
+        val savedState : SharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+        val checkboxState = savedState.getBoolean("savedState", false)
+
+        binding.savedCheckbox.isChecked = checkboxState
     }
 }
