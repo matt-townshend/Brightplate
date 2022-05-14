@@ -1,6 +1,6 @@
-package com.example.brightplate.controllers
+package com.example.brightplate.models
 
-import com.example.brightplate.models.Ingredient
+import com.example.brightplate.controllers.RecipeListCallback
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
@@ -58,5 +58,19 @@ object SavedRecipeObj {
         dbRef = FirebaseDatabase.getInstance()
             .getReference("users/$userID/SavedRecipes/$recipeName")
         dbRef.child("Recipe Name").setValue(recipeName)
+    }
+
+
+    /**
+     * @param recipeName
+     * the method gets the user id and reference to the "SavedRecipes" table from firebase
+     * and removes the title of the recipe to that table
+     */
+    fun removeSavedRecipe(recipeName: String) {
+        auth = FirebaseAuth.getInstance()
+        val userID = auth.uid.toString()
+        dbRef = FirebaseDatabase.getInstance()
+            .getReference("users/$userID/SavedRecipes/$recipeName")
+        dbRef.child("Recipe Name").removeValue();
     }
 }

@@ -3,7 +3,7 @@ package com.example.brightplate.main
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.brightplate.controllers.SavedRecipeObj
+import com.example.brightplate.models.SavedRecipeObj
 import com.example.brightplate.databinding.ActivityChosenRecipeBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase

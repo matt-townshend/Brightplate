@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.brightplate.R
 import com.example.brightplate.main.ChosenRecipe
+import com.example.brightplate.models.SavedRecipeObj
 
 /**
  * Activity which is used to display the saved recipes from the user's saved recipe table
