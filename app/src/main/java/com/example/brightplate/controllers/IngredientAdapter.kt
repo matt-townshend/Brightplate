@@ -9,7 +9,7 @@ import com.example.brightplate.R
 import com.example.brightplate.models.Ingredient
 
 
-private class IngredientAdapter(list: ArrayList<Ingredient>) :
+public class IngredientAdapter(list: ArrayList<Ingredient>) :
     RecyclerView.Adapter<IngredientAdapter.IngredientViewHolder>() {
 
     private var list: ArrayList<Ingredient> = list
@@ -31,7 +31,7 @@ private class IngredientAdapter(list: ArrayList<Ingredient>) :
         return list.size
     }
 
-    internal class IngredientViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class IngredientViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var ingName: TextView
         var ingUnit: TextView
         var ingAmount: TextView
