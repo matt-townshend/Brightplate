@@ -74,4 +74,37 @@ object SavedRecipeObj {
             .getReference("users/$userID/SavedRecipes/$recipeName")
         dbRef.child("Recipe Name").removeValue();
     }
+
+    /**
+     * @param ingName
+     * @param ingUnitType
+     *
+     * @return isInputValid
+     * true if the input is valid (not empty) and false if the input is invalid (empty)
+     */
+    fun isInputValid(ingName: String, ingUnitType: String): Boolean {
+        var isInputValid = true
+        if (ingName.isEmpty() || ingUnitType.isEmpty()) {
+            isInputValid = false
+        }
+        return isInputValid
+    }
+
+    /**
+     * @param requiredUnit
+     * @param initUnit
+     *
+     * @return isUnitValid
+     * true if the two unit matches and false if the two units do not match
+     */
+    fun isUnitValid(requiredUnit: String, initUnit: String): Boolean {
+        var isUnitValid = true
+
+        if (initUnit.toString().toLowerCase() != requiredUnit.toString().toLowerCase()) {
+            isUnitValid = false
+        }
+
+        return isUnitValid
+    }
+
 }
