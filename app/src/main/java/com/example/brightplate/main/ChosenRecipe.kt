@@ -96,9 +96,7 @@ class ChosenRecipe : AppCompatActivity() {
         binding.finishedCookingButton.setOnClickListener{
             FinishCookingRecipe.finishCookingRecipe(selectedRecipe.toString(), object: UpdateInventoryWhenCookedCallback {
                 override fun onCallback(flag: Boolean) {
-                    if(flag) {
-                        Toast.makeText(null,"Recipe Cooked. Ingredients removed from inventory", Toast.LENGTH_LONG).show()
-                    }
+
                 }
             })
         }

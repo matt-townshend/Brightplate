@@ -44,8 +44,8 @@ object FinishCookingRecipe {
         auth = FirebaseAuth.getInstance()
         db = FirebaseDatabase.getInstance().getReference("users/${auth.uid.toString()}/Inventory")
         for (ingredients in ingredientList) {
-            db.child(ingredients.ingName).child(ingredients.ingAmount.toString()).get().addOnSuccessListener {
-                db.child(ingredients.ingName).child(ingredients.ingAmount.toString()).setValue(it.value.toString().toDouble().minus(ingredients.ingAmount))
+            db.child(ingredients.ingName.toLowerCase()).child("ingAmount").get().addOnSuccessListener {
+                db.child(ingredients.ingName.toLowerCase()).child("ingAmount").setValue(it.value.toString().toDouble().minus(ingredients.ingAmount))
             }
         }
     }
