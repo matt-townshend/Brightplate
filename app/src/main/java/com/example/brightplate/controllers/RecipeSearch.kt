@@ -15,7 +15,7 @@ object RecipeSearch {
     // recipes that a user can currently do, in regards to their current inventory by taking the name
     // of ingredient, quanity of the ingredient, and any given filter of an ingredient which will
     // exclude recipes containing that ingredient
-    fun findAllRecipes(ingredientFilter: String, myCallback:RecipeListCallback) {
+    fun findAllRecipes(ingredientFilter: String, recipeFilter:String, myCallback:RecipeListCallback) {
         var userIngredientList: ArrayList<Ingredient> = arrayListOf() // initializes arraylist of user's ingredients in inventory
 
         auth = FirebaseAuth.getInstance() // initializes firebase authorisation
@@ -80,28 +80,34 @@ object RecipeSearch {
 
                     // iterates through all recipes in the recipe list
                     for (i: RecipeFind in recipeList) {
-                        ingredientCount = 0 // sets ingredient count to 0 as a bnew recipe is being iterated through at this point
-                        // iterates through all ingredients within a recipe
-                        for (j in i.ingredients) {
-                            // checks if there ia a filter provided, and whether that matches the ingredient currently being checked
-                            if(ingredientFilter.isNotEmpty() && ingredientFilter.lowercase().contains(j.ingName.lowercase())) {
-                                break // will break out of loop and wont do any more checking for this recipe
-                            }
-                            // iterates through all ingredients in a users inventory to find a match for the recipe ingredient currently being checked
-                            for (k: Ingredient in userIngredientList) {
+                        if((recipeFilter.isNotEmpty() && i.name.lowercase().contains(recipeFilter.lowercase())) || recipeFilter.isEmpty()) {
 
-                                if (j.ingName.lowercase() == k.ingName.lowercase() // checks that ingredient name matches
-                                    && j.ingUnit == k.ingUnit // checks that ingredient unit matches
-                                    && j.ingAmount <= k.ingAmount)  // checks that user ingredient quantity is equal or greater than the recipe ingredient quantity
+                            ingredientCount = 0 // sets ingredient count to 0 as a bnew recipe is being iterated through at this point
+                            // iterates through all ingredients within a recipe
+                            for (j in i.ingredients) {
+                                // checks if there ia a filter provided, and whether that matches the ingredient currently being checked
+                                if (ingredientFilter.isNotEmpty() && ingredientFilter.lowercase()
+                                        .contains(j.ingName.lowercase())
+                                ) {
+                                    break // will break out of loop and wont do any more checking for this recipe
+                                }
+                                // iterates through all ingredients in a users inventory to find a match for the recipe ingredient currently being checked
+                                for (k: Ingredient in userIngredientList) {
+
+                                    if (j.ingName.lowercase() == k.ingName.lowercase() // checks that ingredient name matches
+                                        && j.ingUnit == k.ingUnit // checks that ingredient unit matches
+                                        && j.ingAmount <= k.ingAmount
+                                    )  // checks that user ingredient quantity is equal or greater than the recipe ingredient quantity
                                     {
-                                    ingredientCount++ // if all conditions are met, the ingredient count for the recipe is incremented
+                                        ingredientCount++ // if all conditions are met, the ingredient count for the recipe is incremented
+                                    }
                                 }
                             }
-                        }
-                        // after all ingredients for a recipe have been checked, the ingredient
-                        // count is compared to the quantity oif ingredients in the recipe being checked
-                        if (ingredientCount == i.ingredients.size) {
-                            foundRecipes.add(i.name) // if all ingredients are present in users inventory, the recipe name will be added to the list of found recipes
+                            // after all ingredients for a recipe have been checked, the ingredient
+                            // count is compared to the quantity oif ingredients in the recipe being checked
+                            if (ingredientCount == i.ingredients.size) {
+                                foundRecipes.add(i.name) // if all ingredients are present in users inventory, the recipe name will be added to the list of found recipes
+                            }
                         }
                     }
                 myCallback.onCallback(foundRecipes) // calls the onCallback function of the RecipeListCallback interface, so that it may pass the list back
