@@ -5,6 +5,8 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.brightplate.controllers.FinishCookingRecipe
+import com.example.brightplate.controllers.UpdateInventoryWhenCookedCallback
 import com.example.brightplate.models.SavedRecipeObj
 import com.example.brightplate.databinding.ActivityChosenRecipeBinding
 import com.google.firebase.database.DatabaseReference
@@ -89,6 +91,14 @@ class ChosenRecipe : AppCompatActivity() {
                 saveCheckboxState(isChecked)
                 Toast.makeText(this, "Saved Recipe Removed", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        binding.finishedCookingButton.setOnClickListener{
+            FinishCookingRecipe.finishCookingRecipe(selectedRecipe.toString(), object: UpdateInventoryWhenCookedCallback {
+                override fun onCallback(flag: Boolean) {
+
+                }
+            })
         }
     }
 
