@@ -69,7 +69,6 @@ class RecipeListActivity : AppCompatActivity(), RecyclerAdapter.OnRecipeItemClic
 //    }
 
 
-
     override fun onClick(position: Int) {
 
         var recipe = recipeList[position]

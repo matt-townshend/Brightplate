@@ -47,7 +47,7 @@ class AllRecipeListActivity : AppCompatActivity(), RecyclerAdapter.OnRecipeItemC
                 {
                     for(recipeSnapshot in snapshot.children) //All the children of the "Recipes" node
                     {
-                        if ((recipeFilter.isNotEmpty() && recipeSnapshot.key.toString().lowercase()
+                        if ((recipeFilter.isNotEmpty() && recipeSnapshot.key.toString().lowercase()//adding recipes to array list based on filter
                                 .contains(recipeFilter.lowercase())) || recipeFilter.isEmpty()
                         ) {
                             val recipe = recipeSnapshot.key.toString()
