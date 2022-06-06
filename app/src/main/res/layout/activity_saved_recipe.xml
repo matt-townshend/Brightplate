@@ -35,30 +35,4 @@
         app:layout_constraintVertical_bias="1.0"
         tools:listitem="@layout/activity_choserecipe_customlayout" />
 
-    <TextView
-        android:id="@+id/textView_saveCountTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Recipes Saved:"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/recyclerView_recipeSelection"
-        app:layout_constraintHorizontal_bias="0.347"
-        app:layout_constraintStart_toStartOf="@+id/recyclerView_recipeSelection"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView_recipeSelection" />
-
-    <TextView
-        android:id="@+id/textView_savedCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="TextView"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/textView_saveCountTitle"
-        app:layout_constraintStart_toEndOf="@+id/textView_saveCountTitle"
-        app:layout_constraintTop_toTopOf="@+id/textView_saveCountTitle" />
 </androidx.constraintlayout.widget.ConstraintLayout>
