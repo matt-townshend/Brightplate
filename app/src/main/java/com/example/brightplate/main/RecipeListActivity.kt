@@ -39,7 +39,7 @@ class RecipeListActivity : AppCompatActivity(), RecyclerAdapter.OnRecipeItemClic
         })
     }
 
-/*Code that might be of use late -- Will be removed after further development if not needed*/
+/*Code that might be of use later -- Will be removed after further development if not needed*/
 /*-----------------------------------------------------------------------------------------*/
 //    private fun getRecipeData()
 //    {

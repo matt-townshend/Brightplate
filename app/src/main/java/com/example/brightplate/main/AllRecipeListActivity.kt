@@ -34,9 +34,10 @@ class AllRecipeListActivity : AppCompatActivity(), RecyclerAdapter.OnRecipeItemC
 
     }
 
-    private fun getRecipeData()
+
+    fun getRecipeData()
     {
-        val ingredientFilter: String = intent.getStringExtra("ingredientFilter").toString()
+        //val ingredientFilter: String = intent.getStringExtra("ingredientFilter").toString()
         val recipeFilter: String = intent.getStringExtra("recipeFilter").toString()
         dbref = FirebaseDatabase.getInstance().getReference("Recipes") //Database reference to
         //the node "Recipes" so that its children can be accessed
@@ -68,7 +69,6 @@ class AllRecipeListActivity : AppCompatActivity(), RecyclerAdapter.OnRecipeItemC
 
 
     }
-
 
 
     override fun onClick(position: Int) {

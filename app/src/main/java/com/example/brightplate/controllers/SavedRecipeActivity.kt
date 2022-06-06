@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.brightplate.R
+import com.example.brightplate.databinding.ActivitySavedRecipeBinding
 import com.example.brightplate.main.ChosenRecipe
 import com.example.brightplate.models.SavedRecipeObj
 
@@ -17,16 +18,21 @@ import com.example.brightplate.models.SavedRecipeObj
 class SavedRecipeActivity : AppCompatActivity(), RecyclerAdapter.OnRecipeItemClickListener {
     private lateinit var recipeRecyclerView: RecyclerView
     private lateinit var recipeSavedList: ArrayList<String>
+    private lateinit var binding: ActivitySavedRecipeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recipe_list)
+
+        binding = ActivitySavedRecipeBinding.inflate(layoutInflater)
 
         recipeRecyclerView = findViewById(R.id.recyclerView_recipeSelection)
         recipeRecyclerView.layoutManager = LinearLayoutManager(this)
         recipeRecyclerView.setHasFixedSize(true)
 
         recipeSavedList = arrayListOf()
+        binding.textViewSavedCount.setText(recipeSavedList.size)
+
         SavedRecipeObj.getSavedRecipes(object : RecipeListCallback {
             override fun onCallback(recipes: ArrayList<String>) {
                 recipeSavedList = recipes
