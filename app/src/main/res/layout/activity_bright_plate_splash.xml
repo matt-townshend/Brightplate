@@ -8,7 +8,6 @@
     android:backgroundTint="@color/orange_main"
     tools:context=".main.BrightPlateSplash">
 
-
     <androidx.cardview.widget.CardView
         android:layout_width="348dp"
         android:layout_height="632dp"
