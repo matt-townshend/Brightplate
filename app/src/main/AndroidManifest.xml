@@ -37,6 +37,9 @@
             android:name=".main.RecipeListActivity"
             android:exported="true" />
         <activity
+            android:name=".controllers.CalBMI"
+            android:exported="true" />
+        <activity
             android:name=".controllers.SavedRecipeActivity"
             android:exported="true" />
         <activity

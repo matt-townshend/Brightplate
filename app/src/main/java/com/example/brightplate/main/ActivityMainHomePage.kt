@@ -3,6 +3,7 @@ package com.example.brightplate.main
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.brightplate.controllers.CalBMI
 import com.example.brightplate.controllers.InventoryEditActivity
 import com.example.brightplate.controllers.SavedRecipeActivity
 import com.example.brightplate.databinding.ActivityMainHomePageBinding
@@ -55,6 +56,10 @@ class ActivityMainHomePage : AppCompatActivity() {
         binding.buttonSavedRecipes.setOnClickListener() {
             val goToSavedRecipes = Intent(this, SavedRecipeActivity::class.java)
             startActivity(goToSavedRecipes)
+        }
+        binding.buttonCalculateBMI.setOnClickListener() {
+            val goToCalBMI = Intent(this, CalBMI::class.java)
+            startActivity(goToCalBMI)
         }
 
         //displays a friendly welcome message containing the user's username which was given at sign up

@@ -72,6 +72,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_editInvontory" />
 
+    <Button
+        android:id="@+id/button_CalculateBMI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        android:text="BMI Calculator"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_savedRecipes" />
+
     <EditText
         android:id="@+id/textFilter"
         android:layout_width="wrap_content"
