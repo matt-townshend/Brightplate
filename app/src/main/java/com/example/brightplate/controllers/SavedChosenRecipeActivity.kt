@@ -19,7 +19,7 @@ class SavedChosenRecipeActivity : AppCompatActivity() {
     private val recipes = "Recipes"
     private val description = "Description"
     private val equipment = "Equipment"
-    private val cookTime = "Cook Time"
+    private var cookTime = "Cook Time"
     private val prepTime = "Prep Time"
     private var imageURL = "Image"
 

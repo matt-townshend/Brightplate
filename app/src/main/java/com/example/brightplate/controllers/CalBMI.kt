@@ -58,8 +58,11 @@ class CalBMI : AppCompatActivity() {
             DisplayBMI.text = ("Your BMI is: $calculatedBMI")
 
         }
-        saveButton.setOnClickListener { {
-        } }
+        saveButton.setOnClickListener {
+            run {
+                saveBMI(calculatedBMI)
+            }
+        }
     }
     fun getUserId(): String {
         auth = FirebaseAuth.getInstance()
@@ -67,30 +70,68 @@ class CalBMI : AppCompatActivity() {
         userID = auth.uid.toString()
         return userID
     }
+    fun checkCalculatenotempty(CalculatedBMI: Double): Boolean {
+        var isNotEmpty = true
+        if (CalculatedBMI==0.0){
+            isNotEmpty=false
+        }
+        return isNotEmpty
+    }
+    fun checkInputnotempty(height: Double, weight:Double): Boolean {
+        var Checkinput=true
+        if (height==0.0 ||weight==0.0){
+            Checkinput=false
+
+        }
+        return Checkinput
+    }
+
 
     fun saveBMI(CalculatedBMI: Double) {
-        dbRef = FirebaseDatabase.getInstance().getReference(this.dbOuterPath)
-        dbRef.child(getUserId()).child("Profile").get().addOnSuccessListener {
-            dbRef.child(getUserId()).child(dbInnerPath).
+        if (checkCalculatenotempty(CalculatedBMI)){
+            dbRef = FirebaseDatabase.getInstance().getReference(this.dbOuterPath)
+            dbRef.child(getUserId()).child("Profile").get().addOnSuccessListener {
+                dbRef.child(getUserId()).child(dbInnerPath).child("BMI").setValue(CalculatedBMI)
+            }
+            Toast.makeText(
+                applicationContext,
+                "Your BMI $CalculatedBMI has been saved",
+                Toast.LENGTH_SHORT
+            ).show()
+        }else if(checkInputnotempty(Height,Weight)){
+            Toast.makeText(
+                applicationContext,
+                "Enter your Height and Weight",
+                Toast.LENGTH_SHORT
+            ).show()
+        }else{
+            Toast.makeText(
+                applicationContext,
+                "Please Calculate Your BMI first",
+                Toast.LENGTH_SHORT
+            ).show()
         }
+
     }
 
 
     fun CalculateBMI(height: Double, weight: Double) {
-        val tempwheight= height/100
-        val tempBMI : Double=weight / (tempwheight*tempwheight)
-        tempBMI
-        calculatedBMI=tempBMI.toBigDecimal().setScale(1, RoundingMode.UP).toDouble()
+        if (checkInputnotempty(height,weight)){
+            val tempwheight= height/100
+            val tempBMI : Double=weight / (tempwheight*tempwheight)
+            tempBMI
+            calculatedBMI=tempBMI.toBigDecimal().setScale(1, RoundingMode.UP).toDouble()
 
+        }else{
+            Toast.makeText(
+                applicationContext,
+                "Please Enter your Height and Weight",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
 
 
     }
 
-    fun getPower(height: Double): Double {
-        val exponent = 2
-        val result = Math.pow(height.toDouble(), exponent.toDouble())
 
-        return result
-
-    }
 }
