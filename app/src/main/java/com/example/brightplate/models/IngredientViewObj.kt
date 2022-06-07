@@ -13,20 +13,21 @@ object IngredientViewObj {
     private lateinit var database: DatabaseReference
     private lateinit var datalist: ArrayList<Ingredient>
 
+
     fun getInventoryIngredients(callback: IngredientListCallBack) {
         datalist = arrayListOf()
         auth = FirebaseAuth.getInstance()
 
+
         database = FirebaseDatabase.getInstance().getReference("users")
-        var dataloction = database.child("${auth.uid}/Inventory)")
+        var dataloction = database.child("${auth.uid}").child("Inventory")
         dataloction.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (ingredient in snapshot.children) {
                     val ingName = ingredient.child("ingName").getValue().toString()
-                    val ingAmount =
-                        ingredient.child("ingAmount").getValue().toString().toDouble()
+                    val ingAmount = ingredient.child("ingAmount").getValue().toString().toDouble()
                     val ingUnit = ingredient.child("ingUnit").getValue().toString()
-                    datalist.add(Ingredient(ingName, ingUnit, ingAmount))
+                    datalist.add(Ingredient(ingName,ingUnit,ingAmount))
                 }
                 callback.IngredientyCallback(datalist)
             }
