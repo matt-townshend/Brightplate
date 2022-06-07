@@ -5,21 +5,9 @@
       <map>
         <entry key="..\:/Users/bhara/AndroidStudioProjects/Brightplate2/app/src/main/res/layout/activity_bright_plate_splash.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/bhara/AndroidStudioProjects/Brightplate2/app/src/main/res/layout/activity_main_home_page.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/bhara/AndroidStudioProjects/Brightplate3/app/src/main/res/layout/activity_inventory_edit.xml" value="0.36302083333333335" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/Brightplate3/app/src/main/res/layout/activity_chosen_recipe.xml" value="0.30978260869565216" />
-        <entry key="app/src/main/res/drawable/round_button.xml" value="0.1925" />
-        <entry key="app/src/main/res/layout/activity_bright_plate_splash.xml" value="0.18580322265625002" />
-        <entry key="app/src/main/res/layout/activity_chosen_recipe.xml" value="0.15070921985815602" />
-        <entry key="app/src/main/res/layout/activity_choserecipe_customlayout.xml" value="0.33334045410156254" />
-        <entry key="app/src/main/res/layout/activity_inventory.xml" value="0.15070921985815602" />
-        <entry key="app/src/main/res/layout/activity_inventory_edit.xml" value="0.24634003570114357" />
-        <entry key="app/src/main/res/layout/activity_inventory_view.xml" value="0.15070921985815602" />
-        <entry key="app/src/main/res/layout/activity_main_home_page.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/activity_recipe_list.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/activity_recipe_search.xml" value="0.1890625" />
-        <entry key="app/src/main/res/layout/activity_saved_chosen_recipe.xml" value="0.15070921985815602" />
-        <entry key="app/src/main/res/layout/activity_saved_recipe.xml" value="0.15070921985815602" />
-        <entry key="app/src/main/res/layout/activity_user_signin.xml" value="0.2175039761308311" />
-        <entry key="app/src/main/res/layout/activity_user_signup.xml" value="0.1719558715820313" />
       </map>
     </option>
   </component>
