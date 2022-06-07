@@ -5,9 +5,11 @@
       <map>
         <entry key="..\:/Users/bhara/AndroidStudioProjects/Brightplate2/app/src/main/res/layout/activity_bright_plate_splash.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/bhara/AndroidStudioProjects/Brightplate2/app/src/main/res/layout/activity_main_home_page.xml" value="0.17552083333333332" />
-        <entry key="..\:/Users/bhara/AndroidStudioProjects/Brightplate3/app/src/main/res/layout/activity_inventory_edit.xml" value="0.36302083333333335" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/Brightplate3/app/src/main/res/layout/activity_chosen_recipe.xml" value="0.30978260869565216" />
+        <entry key="app/src/main/res/layout/activity_inventory.xml" value="0.15070921985815602" />
+        <entry key="app/src/main/res/layout/activity_inventory_view.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/activity_recipe_search.xml" value="0.1890625" />
+        <entry key="app/src/main/res/layout/ingredient.xml" value="0.15070921985815602" />
       </map>
     </option>
   </component>
