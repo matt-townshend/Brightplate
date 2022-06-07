@@ -70,6 +70,7 @@ class InventoryEditActivity : AppCompatActivity() {
         addBtn.setOnClickListener {
             ingredientName = ingredientNameInput.text.toString().toLowerCase()
             ingredientAmount = ingredientQuantity.text.toString().toDouble()
+            //checks if the field is empty or not if it is empty it sets the value to 0
             if (ingredientLimitInput.text.isEmpty()){
                 ingredientLimit=0.0
             }else if(ingredientLimitInput.text.isNotEmpty()){
