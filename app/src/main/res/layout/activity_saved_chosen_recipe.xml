@@ -5,8 +5,6 @@
     android:id="@+id/equipment_needed"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    android:backgroundTint="#E14CAF50"
     tools:context=".main.ChosenRecipe">
 
     <TextView

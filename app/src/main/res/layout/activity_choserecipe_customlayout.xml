@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#FFFFFF"
-    android:backgroundTint="#A44CAF50"
     android:orientation="vertical"
     android:padding="5dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        app:cardBackgroundColor="#46B14B"
+        app:cardBackgroundColor="@color/orange_main"
+        app:cardElevation="10dp"
+        android:layout_margin="10dp"
         app:cardCornerRadius="15dp">
 
         <TextView
@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Test"
+            android:text="Recipe Name "
             android:textColor="@color/white"
             android:textSize="25sp"
             android:textStyle="bold" />
