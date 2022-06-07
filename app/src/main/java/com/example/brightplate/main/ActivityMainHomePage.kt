@@ -25,6 +25,8 @@ class ActivityMainHomePage : AppCompatActivity() {
         //button to go to the AllRecipeListActivity activity
         binding.buttonAllRecipes.setOnClickListener(){
             val goToAllRecipes = Intent(this, AllRecipeListActivity:: class.java)
+            goToAllRecipes.putExtra("ingredientFilter",binding.textFilter.text.toString())
+            goToAllRecipes.putExtra("recipeFilter",binding.recipeFilter.text.toString())
             startActivity(goToAllRecipes)
         }
 
@@ -37,7 +39,8 @@ class ActivityMainHomePage : AppCompatActivity() {
         //button to go to the RecipeListActivity activity
         binding.buttonSearchRecipes.setOnClickListener(){
             val goToSearchRecipe = Intent(this, RecipeListActivity::class.java)
-            goToSearchRecipe.putExtra("filter",binding.textFilter.text.toString()) //passes in the ingredient filter text to the activity
+            goToSearchRecipe.putExtra("ingredientFilter",binding.textFilter.text.toString()) //passes in the ingredient filter text to the activity
+            goToSearchRecipe.putExtra("recipeFilter",binding.recipeFilter.text.toString())
             startActivity(goToSearchRecipe)
         }
 

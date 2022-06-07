@@ -21,6 +21,8 @@ class AllRecipeListActivity : AppCompatActivity(), RecyclerAdapter.OnRecipeItemC
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recipe_list)
 
+
+
         recipeRecyclerView = findViewById(R.id.recyclerView_recipeSelection) //reference to the recycler
         //view holding the recipes
         recipeRecyclerView.layoutManager = LinearLayoutManager(this)
@@ -32,8 +34,11 @@ class AllRecipeListActivity : AppCompatActivity(), RecyclerAdapter.OnRecipeItemC
 
     }
 
-    private fun getRecipeData()
+
+    fun getRecipeData()
     {
+        //val ingredientFilter: String = intent.getStringExtra("ingredientFilter").toString()
+        val recipeFilter: String = intent.getStringExtra("recipeFilter").toString()
         dbref = FirebaseDatabase.getInstance().getReference("Recipes") //Database reference to
         //the node "Recipes" so that its children can be accessed
         dbref.addValueEventListener(object: ValueEventListener {
@@ -42,9 +47,13 @@ class AllRecipeListActivity : AppCompatActivity(), RecyclerAdapter.OnRecipeItemC
                 {
                     for(recipeSnapshot in snapshot.children) //All the children of the "Recipes" node
                     {
-                        val recipe = recipeSnapshot.key.toString()
-                        recipeArrayList.add(recipe)
+                        if ((recipeFilter.isNotEmpty() && recipeSnapshot.key.toString().lowercase()//adding recipes to array list based on filter
+                                .contains(recipeFilter.lowercase())) || recipeFilter.isEmpty()
+                        ) {
+                            val recipe = recipeSnapshot.key.toString()
+                            recipeArrayList.add(recipe)
 
+                        }
                     }
                     recipeRecyclerView.adapter = RecyclerAdapter(recipeArrayList, this@AllRecipeListActivity)
                     //Initialising the recycler view adapter
@@ -60,7 +69,6 @@ class AllRecipeListActivity : AppCompatActivity(), RecyclerAdapter.OnRecipeItemC
 
 
     }
-
 
 
     override fun onClick(position: Int) {

@@ -38,8 +38,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="Cook Time:"
-        android:textStyle="bold"
         android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageView_recipePic"
         app:layout_constraintTop_toTopOf="@+id/imageView_recipePic" />
 
@@ -50,8 +50,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginBottom="52dp"
         android:text="Calories:"
-        android:textStyle="bold"
         android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imageView_recipePic"
         app:layout_constraintStart_toEndOf="@+id/imageView_recipePic" />
 
@@ -61,8 +61,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="Preperation Time:"
-        android:textStyle="bold"
         android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView_caloriesTitle"
         app:layout_constraintStart_toEndOf="@+id/imageView_recipePic"
         app:layout_constraintTop_toBottomOf="@+id/textView_cookTime_title"
@@ -75,8 +75,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="192dp"
         android:text="Description"
-        android:textStyle="bold"
         android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView_recipePic" />
 
@@ -98,8 +98,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginBottom="8dp"
         android:text="Equipment:"
-        android:textStyle="bold"
         android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imageView_recipePic"
         app:layout_constraintStart_toEndOf="@+id/imageView_recipePic" />
 
@@ -148,8 +148,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="Ingredients:"
-        android:textStyle="bold"
         android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_equipment" />
 

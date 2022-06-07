@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.brightplate.R
+import com.example.brightplate.databinding.ActivitySavedRecipeBinding
 import com.example.brightplate.main.ChosenRecipe
 import com.example.brightplate.models.SavedRecipeObj
 
@@ -27,6 +28,7 @@ class SavedRecipeActivity : AppCompatActivity(), RecyclerAdapter.OnRecipeItemCli
         recipeRecyclerView.setHasFixedSize(true)
 
         recipeSavedList = arrayListOf()
+
         SavedRecipeObj.getSavedRecipes(object : RecipeListCallback {
             override fun onCallback(recipes: ArrayList<String>) {
                 recipeSavedList = recipes
