@@ -19,11 +19,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:layout_gravity="top|center"
+        <TextView
             android:id="@+id/InventoryActivityEditTitle"
             android:layout_width="308dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="top|center"
             android:layout_marginStart="78dp"
             android:layout_marginTop="33dp"
             android:layout_marginEnd="78dp"
@@ -31,7 +31,7 @@
             android:text="EDIT INVENTORY"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="30dp"
+            android:textSize="35dp"
             android:textStyle="bold" />
 
         <androidx.cardview.widget.CardView
@@ -59,15 +59,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/InventoryActivityEditTitle" />
 
             <Spinner
-                android:layout_gravity="center"
-                android:layout_margin="20dp"
                 android:id="@+id/IngredientUnitTypeSpinner"
-                android:background="@drawable/custom_input"
-                android:autofillHints="Unit"
                 android:layout_width="280dp"
                 android:layout_height="50dp"
+                android:layout_gravity="center"
                 android:layout_marginTop="30dp"
-                android:layout_marginBottom="50dp"
+                android:autofillHints="Unit"
+                android:background="@drawable/custom_input"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toTopOf="@+id/IngredientQuantityInput"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -95,16 +93,18 @@
                 android:id="@+id/IngredientLimitInput"
                 android:layout_width="280dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="30dp"
+
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="87dp"
                 android:background="@drawable/custom_input"
                 android:ems="10"
                 android:hint="Enter Limit"
                 android:inputType="number"
                 android:padding="10dp"
                 android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/IngredientQuantityInput" />
+                app:layout_constraintEnd_toEndOf="@id/IngredientNameInput"
+                app:layout_constraintStart_toStartOf="@id/IngredientNameInput"
+                app:layout_constraintTop_toBottomOf="@id/IngredientNameInput" />
 
         </androidx.cardview.widget.CardView>
 
