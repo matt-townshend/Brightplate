@@ -56,6 +56,22 @@ class CalBMI : AppCompatActivity() {
             Weight = WeightInput.text.toString().toDouble()
             CalculateBMI(Height, Weight)
             DisplayBMI.text = ("Your BMI is: $calculatedBMI")
+
+        }
+        saveButton.setOnClickListener { {
+        } }
+    }
+    fun getUserId(): String {
+        auth = FirebaseAuth.getInstance()
+        var db = FirebaseDatabase.getInstance().getReference("users")
+        userID = auth.uid.toString()
+        return userID
+    }
+
+    fun saveBMI(CalculatedBMI: Double) {
+        dbRef = FirebaseDatabase.getInstance().getReference(this.dbOuterPath)
+        dbRef.child(getUserId()).child("Profile").get().addOnSuccessListener {
+            dbRef.child(getUserId()).child(dbInnerPath).
         }
     }
 
