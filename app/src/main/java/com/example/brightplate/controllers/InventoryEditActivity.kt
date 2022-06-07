@@ -22,8 +22,10 @@ class InventoryEditActivity : AppCompatActivity() {
     private lateinit var ingredientNameInput: EditText
     private lateinit var ingredientUnitOption: Spinner
     private lateinit var ingredientQuantity: EditText
+    private lateinit var ingredientLimitInput: EditText
 
     private var ingredientAmount: Double = 0.0
+    private var ingredientLimit: Double = 0.0
     private lateinit var ingredientName: String
     private lateinit var ingredientUnitType: String
 
@@ -38,6 +40,7 @@ class InventoryEditActivity : AppCompatActivity() {
         setContentView(R.layout.activity_inventory_edit)
 
         // init values
+        ingredientLimitInput=findViewById(R.id.IngredientLimitInput)
         ingredientNameInput = findViewById(R.id.IngredientNameInput)
         ingredientUnitOption = findViewById(R.id.IngredientUnitTypeSpinner)
         ingredientQuantity = findViewById(R.id.IngredientQuantityInput)
@@ -67,7 +70,12 @@ class InventoryEditActivity : AppCompatActivity() {
         addBtn.setOnClickListener {
             ingredientName = ingredientNameInput.text.toString().toLowerCase()
             ingredientAmount = ingredientQuantity.text.toString().toDouble()
-            saveIngredient(ingredientName, ingredientAmount, ingredientUnitType)
+            if (ingredientLimitInput.text.isEmpty()){
+                ingredientLimit=0.0
+            }else if(ingredientLimitInput.text.isNotEmpty()){
+                ingredientLimit=ingredientLimitInput.text.toString().toDouble()
+            }
+            saveIngredient(ingredientName, ingredientAmount, ingredientUnitType,ingredientLimit)
         }
 
         removeBtn.setOnClickListener {
@@ -126,7 +134,7 @@ class InventoryEditActivity : AppCompatActivity() {
      *  @param ingUnitType
      *  saves the ingredient values given by the user into the firebase database named "Users -> Inventory"
      */
-    fun saveIngredient(ingName: String, ingAmount: Double, ingUnitType: String) {
+    fun saveIngredient(ingName: String, ingAmount: Double, ingUnitType: String, ingLimit:Double) {
         var ingredientExists = false
 
         if (isInputValid(ingName, ingUnitType)) {
@@ -138,11 +146,14 @@ class InventoryEditActivity : AppCompatActivity() {
                     var amount = it.child("ingAmount").value.toString().toDouble()
                     var unit = it.child("ingUnit").value.toString()
                     var newAmount: Double
+                    var newLimit: Double
 
                     if (isUnitValid(unit, ingUnitType)) {
                         newAmount = amount + ingAmount
                         dbRef.child(getUserId()).child("Inventory").child(ingName)
                             .child("ingAmount").setValue(newAmount)
+                        dbRef.child(getUserId()).child("Inventory").child(ingName)
+                            .child("ingLimit").setValue(ingLimit)
 
                         Toast.makeText(
                             applicationContext,
@@ -169,7 +180,12 @@ class InventoryEditActivity : AppCompatActivity() {
                             Toast.LENGTH_SHORT
                         ).show()
                     }
+                dbRef.child(getUserId()).child("Inventory").child(ingName).get().addOnSuccessListener {
+                    dbRef.child(getUserId()).child("Inventory").child(ingName)
+                        .child("ingLimit").setValue(ingLimit)
+                }
             }
+
         } else {
             Toast.makeText(
                 applicationContext,
