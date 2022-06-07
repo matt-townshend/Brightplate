@@ -24,8 +24,8 @@ class InventoryEditActivity : AppCompatActivity() {
     private lateinit var ingredientQuantity: EditText
     private lateinit var ingredientLimitInput: EditText
 
-    private var ingredientLimit: Double = 0.0
     private var ingredientAmount: Double = 0.0
+    private var ingredientLimit: Double = 0.0
     private lateinit var ingredientName: String
     private lateinit var ingredientUnitType: String
 
@@ -75,7 +75,7 @@ class InventoryEditActivity : AppCompatActivity() {
             }else if(ingredientLimitInput.text.isNotEmpty()){
                 ingredientLimit=ingredientLimitInput.text.toString().toDouble()
             }
-                saveIngredient(ingredientName, ingredientAmount, ingredientUnitType,ingredientLimit)
+            saveIngredient(ingredientName, ingredientAmount, ingredientUnitType,ingredientLimit)
         }
 
         removeBtn.setOnClickListener {
@@ -155,7 +155,6 @@ class InventoryEditActivity : AppCompatActivity() {
                         dbRef.child(getUserId()).child("Inventory").child(ingName)
                             .child("ingLimit").setValue(ingLimit)
 
-
                         Toast.makeText(
                             applicationContext,
                             "${ingredientName.toUpperCase()} - ${newAmount} ${ingredientUnitType.toUpperCase()} ADDED",
@@ -186,6 +185,7 @@ class InventoryEditActivity : AppCompatActivity() {
                         .child("ingLimit").setValue(ingLimit)
                 }
             }
+
         } else {
             Toast.makeText(
                 applicationContext,
