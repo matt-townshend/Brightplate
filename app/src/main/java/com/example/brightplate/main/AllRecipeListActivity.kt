@@ -55,8 +55,7 @@ class AllRecipeListActivity : AppCompatActivity(), RecyclerAdapter.OnRecipeItemC
 
                         }
                     }
-                    recipeRecyclerView.adapter = RecyclerAdapter(recipeArrayList, this@AllRecipeListActivity)
-                    //Initialising the recycler view adapter
+                    recipeRecyclerView.adapter = RecyclerAdapter(recipeArrayList, this@AllRecipeListActivity)  //Initialising the recycler view adapter
                 }
 
             }
