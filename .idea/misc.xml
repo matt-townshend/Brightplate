@@ -3,19 +3,28 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="../../../../layout/custom_preview.xml" value="0.3312820512820513" />
+        <entry key="..\:/Brightplate/app/src/main/res/layout/activity_bright_plate_splash.xml" value="0.33177083333333335" />
+        <entry key="..\:/Brightplate/app/src/main/res/layout/activity_calculate_bmi.xml" value="0.33177083333333335" />
+        <entry key="..\:/Brightplate/app/src/main/res/layout/activity_chosen_recipe.xml" value="0.33177083333333335" />
+        <entry key="..\:/Brightplate/app/src/main/res/layout/activity_choserecipe_customlayout.xml" value="0.33177083333333335" />
+        <entry key="..\:/Brightplate/app/src/main/res/layout/activity_inventory_edit.xml" value="0.2703804347826087" />
+        <entry key="..\:/Brightplate/app/src/main/res/layout/activity_inventory_view.xml" value="0.33177083333333335" />
+        <entry key="..\:/Brightplate/app/src/main/res/layout/activity_main_home_page.xml" value="0.33177083333333335" />
+        <entry key="..\:/Brightplate/app/src/main/res/layout/activity_recipe_list.xml" value="0.33177083333333335" />
+        <entry key="..\:/Brightplate/app/src/main/res/layout/activity_recipe_search.xml" value="0.33177083333333335" />
+        <entry key="..\:/Brightplate/app/src/main/res/layout/activity_saved_chosen_recipe.xml" value="0.33177083333333335" />
+        <entry key="..\:/Brightplate/app/src/main/res/layout/activity_saved_recipe.xml" value="0.33177083333333335" />
+        <entry key="..\:/Brightplate/app/src/main/res/layout/activity_user_signin.xml" value="0.33177083333333335" />
+        <entry key="..\:/Brightplate/app/src/main/res/layout/activity_user_signup.xml" value="0.33177083333333335" />
+        <entry key="..\:/Brightplate/app/src/main/res/layout/ingredient.xml" value="0.33177083333333335" />
         <entry key="..\:/Users/bhara/AndroidStudioProjects/Brightplate2/app/src/main/res/layout/activity_bright_plate_splash.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/bhara/AndroidStudioProjects/Brightplate2/app/src/main/res/layout/activity_main_home_page.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/Brightplate3/app/src/main/res/layout/activity_chosen_recipe.xml" value="0.30978260869565216" />
-        <entry key="app/src/main/res/layout/activity_bright_plate_splash.xml" value="0.21560730865036226" />
-        <entry key="app/src/main/res/layout/activity_chosen_recipe.xml" value="0.15070921985815602" />
-        <entry key="app/src/main/res/layout/activity_choserecipe_customlayout.xml" value="0.15070921985815602" />
-        <entry key="app/src/main/res/layout/activity_inventory.xml" value="0.3217953404636248" />
-        <entry key="app/src/main/res/layout/activity_inventory_edit.xml" value="0.2847515782565935" />
-        <entry key="app/src/main/res/layout/activity_inventory_view.xml" value="0.15443840579710144" />
-        <entry key="app/src/main/res/layout/activity_main_home_page.xml" value="0.1721014492753623" />
+        <entry key="app/src/main/res/drawable/selector_saved_item.xml" value="0.145" />
+        <entry key="app/src/main/res/layout/activity_chosen_recipe.xml" value="0.11141304347826086" />
+        <entry key="app/src/main/res/layout/activity_choserecipe_customlayout.xml" value="0.11141304347826086" />
         <entry key="app/src/main/res/layout/activity_recipe_search.xml" value="0.1890625" />
-        <entry key="app/src/main/res/layout/ingredient.xml" value="0.15070921985815602" />
+        <entry key="app/src/main/res/layout/activity_saved_chosen_recipe.xml" value="0.1721014492753623" />
       </map>
     </option>
   </component>

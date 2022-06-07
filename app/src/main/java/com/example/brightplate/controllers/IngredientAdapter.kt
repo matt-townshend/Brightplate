@@ -11,10 +11,8 @@ import com.example.brightplate.R
 class IngredientAdapter(private val itemlist: List<Ingredient>) :
     RecyclerView.Adapter<IngredientAdapter.GroceryListViewholder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroceryListViewholder {
-        val itemView = LayoutInflater.from(parent.context).inflate(
-            R.layout.ingredient,
-            parent, false
-        )
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.ingredient,
+            parent, false)
         return GroceryListViewholder(itemView)
     }
 
